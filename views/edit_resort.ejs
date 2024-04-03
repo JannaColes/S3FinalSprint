@@ -1,0 +1,22 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="edit content">
+            <form action="/resorts/<%= locals.theId %>?_method=PATCH" method="POST">
+                <label>Edit Resort Details:</br>
+                    <input type="text" name="name" value="<%= locals.resort.name %>" required placeholder="Resort Name">
+                    <input type="number" name="price" value="<%= locals.resort.price %>" required placeholder="Price">
+                    <input type="text" name="amenity" value="<%= locals.resort.amenity %>" required placeholder="Amenity">
+                    <textarea name="summary" rows="4" required placeholder="Summary"><%= locals.resort.summary %></textarea>
+                    <select name="isFeatured" required>
+                        <option value="true" <% if (locals.resort.isFeatured) { %>selected<% } %>>Featured</option>
+                        <option value="false" <% if (!locals.resort.isFeatured) { %>selected<% } %>>Not Featured</option>
+                    </select>
+                </label></br>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
