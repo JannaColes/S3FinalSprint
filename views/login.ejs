@@ -1,0 +1,13 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="login content">
+            <h2>Login:</h2>
+            <h3>username: <%= aLogin.username %></br>
+            password: <%= aLogin.password %></h3>
+            <h4>email: <%= aLogin.email %></h4>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
