@@ -1,6 +1,6 @@
 var router = require('express').Router();
 // const loginsDal = require('../../services/pg.logins.dal')
-const loginsDal = require('../../services/m.resorts.dal')
+const resortsDal = require('../../services/m.resorts.dal')
 
 if(DEBUG) console.log('ROUTE: /api/resorts');
    
@@ -16,3 +16,5 @@ router.get('/', async (req, res) => {
         res.json({message: "Service Unavailable", status: 503});
     }
 });
+
+module.exports = router; 

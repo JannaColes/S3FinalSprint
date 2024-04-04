@@ -15,17 +15,27 @@ app.get('/', (req, res) => {
    
 });
 
-app.get('/test', (req, res) => {
-    res.render('admin_dashboard');
+// app.get('/admin', (req, res) => {
+//     res.render('admin_dashboard');
    
-});
+// });
+
+const adminRouter = require('./routes/admin')
+app.use('/admin', adminRouter);
 
 const resortsRouter = require('./routes/resorts')
 app.use('/resorts', resortsRouter);
 
+const apiRouter = require('./routes/api')
+app.use('/api', apiRouter);
+
 app.use((req, res) => {
     res.status(404).render('404');
   });
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Simple app running on port ${PORT}.`);
