@@ -15,6 +15,13 @@ app.get('/', (req, res) => {
    
 });
 
+const resortsRouter = require('./routes/resorts')
+app.use('/resorts', resortsRouter);
+
+app.use((req, res) => {
+    res.status(404).render('404');
+  });
+
 app.listen(PORT, () => {
     console.log(`Simple app running on port ${PORT}.`);
 
