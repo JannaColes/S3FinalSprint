@@ -3,15 +3,15 @@ const mDal = require('../../services/m.fulltext.dal')
 // const pgDal = require('../../services/pg.fulltext.dal')
 
 // api/full
-router.get('/m/:text', async (req, res) => {
-    if(DEBUG) console.log('ROUTE: /api/full/m/ GET ' + req.params.text);
+router.get('/m/:keyword', async (req, res) => {
+    if(DEBUG) console.log('ROUTE: /api/full/m/ GET ' + req.params.keyword);
     try {
-        let theText = await mDal.getFullText(req.params.text); 
-        if(theText.length === 0) {
+        let theKeyword = await mDal.getFullText(req.params.keyword); 
+        if(theKeyword.length === 0) {
           res.statusCode = 404;
           res.json({message: "Not Found", status: 404});
         } else
-        res.json(theText);
+        res.json(theKeyword);
     } catch {
         // log this error to an error log file.
         res.statusCode = 503;
