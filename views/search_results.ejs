@@ -1,0 +1,29 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="search-resorts content">
+            <form action="/resorts/search" method="GET">
+                <label>Search Resorts:</label></br>
+                <input type="text" id="search" name="query" placeholder="Enter resort name" required>
+                </br>
+                <button>Search</button>
+            </form>
+            <div class="search-results">
+                <% if (searchResults.length > 0) { %>
+                    <% searchResults.forEach(resort => { %>
+                        <div class="resort">
+                            <h2><%= resort.name %></h2>
+                            <p><%= resort.location %></p>
+                            <p><%= resort.description %></p>
+                           
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No results found</p>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
