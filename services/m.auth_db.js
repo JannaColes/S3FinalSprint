@@ -6,6 +6,6 @@ const atlas = "mongodb+srv://amydalziel:mdb2021lat@clustersemester3.ks4jtmh.mong
 // const pool = new MongoClient(uri);
 const pool = new MongoClient(atlas);
 
-if(DEBUG) console.log("connected to MongoDB...");
+if(DEBUG) console.log("Connected to MongoDB...");
 
 module.exports = pool;
