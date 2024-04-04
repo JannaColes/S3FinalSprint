@@ -1,0 +1,29 @@
+  <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Amenity</th>
+                        <th>Summary</th>
+                        <th>Featured</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% resorts.forEach(resort => { %>
+                        <tr>
+                            <td><%= resort.name %></td>
+                            <td><%= resort.price %></td>
+                            <td><%= resort.amenity %></td>
+                            <td><%= resort.summary %></td>
+                            <td><%= resort.isFeatured ? 'Yes' : 'No' %></td>
+                            <td>
+                                <a href="/resorts/<%= resort._id %>/edit">Edit</a>
+                                <form action="/resorts/<%= resort._id %>?_method=DELETE" method="POST">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>

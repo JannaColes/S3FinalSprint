@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
    
 });
 
+app.get('/test', (req, res) => {
+    res.render('admin_dashboard');
+   
+});
+
 const resortsRouter = require('./routes/resorts')
 app.use('/resorts', resortsRouter);
 

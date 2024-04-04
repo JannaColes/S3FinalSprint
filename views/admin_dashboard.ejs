@@ -1,39 +1,65 @@
+<!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
-    <body>
-        <%- include('./partials/nav.ejs') %>
-        <div class="admin content">
-            <h2>All Resorts</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Amenity</th>
-                        <th>Summary</th>
-                        <th>Featured</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% resorts.forEach(resort => { %>
-                        <tr>
-                            <td><%= resort.name %></td>
-                            <td><%= resort.price %></td>
-                            <td><%= resort.amenity %></td>
-                            <td><%= resort.summary %></td>
-                            <td><%= resort.isFeatured ? 'Yes' : 'No' %></td>
-                            <td>
-                                <a href="/resorts/<%= resort._id %>/edit">Edit</a>
-                                <form action="/resorts/<%= resort._id %>?_method=DELETE" method="POST">
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-        </div>
-    </body>
-    <%- include('./partials/foot.ejs') %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css" /> 
+    <title>Admin Console</title>
+</head>
+<body>
+
+    <%- include('./partials/admin_nav.ejs') %>
+    <div class="admin content">
+
+        <h2>Add a Resort </h2>
+
+        <form action="/resorts" method="POST">
+                <input type="text" name="name" required placeholder="Resort Name">
+                <input type="text" name="city" required placeholder="City">
+                <input type="text" name="country" required placeholder="Country">
+                <input type="text" name="type" required placeholder="Resort Type">
+                <input type="number" name="rate" required placeholder="Current Rate(USD)">
+                <input type="text" name="amenities" required placeholder="Amenities">
+                <textarea name="summary" rows="4" required placeholder="Summary"></textarea>
+                <select name="isFeatured" required>
+                    <option value="true">Featured</option>
+                    <option value="false">Not Featured</option>
+                </select>
+            </label></br>
+            <button type="submit">Add</button>
+        </form>
+
+     
+     
+       <div id="Edit-Delete-Section">
+        <h2>Edit / Delete Resorts</h2>
+
+        <div id="edit-delete-forms">
+        <form>
+            <label>Search by Resort ID: </label>
+            <input type="number" />
+            <input type="submit" value="Submit">
+
+        </form>
+
+        <form>
+
+            <label>Search by Keyword: </label>
+            <input type="text" /> 
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+
+            
+      
+
+
+        Will it scroll? 
+       </div>
+      
+    </div>
+
+    
+</body>
 </html>
