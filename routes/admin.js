@@ -20,7 +20,17 @@ router.get('/', async (req, res) => {
   });
 
 
+  // http://localhost:3000/admin/id/delete
+    // CRUD Operation: DELETE (takes user to delete_resort.ejs)
+    router.get('/:_id/delete', async (req, res) => {
+        if(DEBUG) console.log('resort.Delete : ' + req.params._id);
+        res.render('delete_resort', {id: req.params._id});
+      });
 
+
+
+
+  // CRUD Operation: POST (user adds a resort to MongoDB database)
   router.post('/', async (req, res) => {
 
     if(DEBUG) console.log("admin.POST");
@@ -37,15 +47,28 @@ router.get('/', async (req, res) => {
             req.body.amenities,
             req.body.isFeatured
         );
-        res.redirect('/admin'); 
+        res.render("admin_resortAdded", { resortName: req.body.name }); 
     } catch (err){
         if (err.status === 400) {
-            res.status(400).render('usernameError');
+            res.status(400).render('404');
         } else {
             res.render('503'); 
         } 
     }
     
+  });
+
+
+  //http://localhost:3000/admin/DELETE?_id=
+// CRUD Operation: DELETE (user deletes a resort from MongoDB database)
+  router.delete('/:_id', async (req, res) => {
+    if(DEBUG) console.log('resorts.DELETE: ' + req.params._id);
+    try {
+        await resortsDal.deleteResort(req.params._id);
+        res.redirect('/');
+    } catch {
+        res.render('503');
+    }
   });
 
 

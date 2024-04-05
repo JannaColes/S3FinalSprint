@@ -80,9 +80,27 @@ async function addResort(resortName, city, country, resortType, summary, cost, r
   }
 };
 
+
+async function deleteResort(id){
+  if(DEBUG) console.log("resorts.mongo.dal.deleteResort()");
+
+  try {
+    await dal.connect();
+    const result = await dal.db("FinalSprint-Travel").collection("Resorts").deleteOne({ _id: new ObjectId(id) });
+    return result; 
+  } catch(error) {
+    console.log(error);
+    throw error;
+  } finally {
+    dal.close();
+  }
+
+}; 
+
 module.exports = {
     getResorts, 
     getResortsById, 
     getResortsByKeyword, 
     addResort, 
+    deleteResort, 
 }

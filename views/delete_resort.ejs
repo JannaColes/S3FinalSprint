@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Resort</title>
+
+</head>
+
+    <body>
+    
+        <div class="delete-content">
+            <form id="delete-form" action="/admin/<%= locals.id %>?_method=DELETE" method="POST">
+                <label>Confirm you wish to DELETE your profile: 
+                </label>
+                <input type="text" id="<%= locals.id %>" name="profile" value="<%= locals.id %>" readonly>
+                <button>DELETE</button>
+            </form>
+        </div>
+    </body>
+
+</html>

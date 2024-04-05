@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css" /> 
+    <link rel="stylesheet" href="/admin.css" /> 
     <title>Admin Console</title>
 </head>
 <body>
@@ -13,72 +13,70 @@
         <nav>
         <a href="/">Home</a>
         <a href="/admin">Admin Home</a>
-        <a href="/admin">Add Resort</a>
-        <a href="/admin">Edit / Delete Resort</a>
+        <a href="/admin">Add</a>
+        <a href="/admin">Edit/Delete</a>
     </nav>
     </nav>
     
     <div class="admin content">
 
-     
-     
-        <div id="Edit-Delete-Section">
-            <h2>Edit / Delete Resorts</h2>
-    
-            <div id="edit-delete-forms">
-    
-            
-    
-        </div>
-    
-    
-        <div id="resort-section">
+    <div id="Edit-Delete-Section">
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Edit</span> or <span id="delete-span">Delete</span> a Resort</h2>
+
+        <div id="edit-delete-forms"></div>
+
+    </div>
+
+    <div id="resort-section">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Type</th>
+                <th>Summary</th>
+                <th>Cost</th>
+                <th>Rate</th>
+                <th>Amenities</th>
+                <th>Promotion</th>
+                <th>Admin Options</th>
+            </tr>
+
             <% theResorts.forEach((resort, i) => { %>
-                <div class="resort-profile">
-    
-                <div class="user-username-div">
-                    <p class="user-username"><%= resort._id %></p>
-                </div>
-    
-                <div class="user-username-div">
-                    <p class="user-username"><%= resort.resort_name %></p>
-                </div>
-                
-                <div class="user-username-div">
-                    <p class="user-username"><%= resort.city %></p>
-                </div>
-    
-                <div class="user-destination-div">
-                <p class="user-destination"><%= resort.country %></p>
-            </div>
-    
-            <div class="user-hobbies-div">
-                <p class="user-hobbies"><%= resort.resort_type %></p>
-                </div>
-    
-                <a class= "edit-btn" href="/resorts/<%=resort.id%>/put?city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>">Edit</a>
-                <a class= "delete-btn" href="/resorts/<%=resort.id%>/delete?city=<%=resort.city%>">Delete</a>
-                </div>
+                <tr>
+                    <td class="resort-Id"><%= resort._id %></td>
+                    <td><%= resort.resort_name %></td>
+                    <td><%= resort.city %></td>
+                    <td><%= resort.country %></td>
+                    <td><%= resort.resort_type %></td>
+                    <td class="resort-summary"><%= resort.summary %></td>
+                    <td><%= resort.cost %></td>
+                    <td>$<%= resort.current_rate_usd %> USD</td>
+                    <td>
+                        <ul>
+                            <% resort.amenities.forEach((amenity) => { %>
+                                <li><%= amenity %></li>
+                            <% }); %>
+                        </ul>
+                    </td>
+                    <% if(resort.is_featured) { %>
+                    <td>Featured</td>
+                    <% } else { %>
+                        <td>NOT Featured</td>
+                        <% }%>
+                    <td class="resort-AdminBtn">
+                        <a class= "edit-btn" href="/admin/<%=resort._id%>/put?city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>">Edit</a> 
+                        <a class= "delete-btn" href="/admin/<%=resort._id%>/delete?_id=<%=resort._id%>">Delete</a>
+                    </td>
+                </tr>
             <% }); %>
-        </div>
+        </table>
+    </div>
     
-                
-          
-    
-    
-         
-           </div>
-            
-      
-
-
-     
-       </div>
-      
     </div>
 
     <script src="js/adminFrontEnd.js"></script>
 
-    
 </body>
 </html>
