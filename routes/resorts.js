@@ -5,6 +5,7 @@ const router = express.Router();
 
 const resortsDal = require('../services/m.resorts.dal'); 
 
+// http://localhost:3000/resorts 
 router.get('/', async (req, res) => {
     try {
        let theResorts = await resortsDal.getResorts(); 
@@ -16,6 +17,10 @@ router.get('/', async (req, res) => {
         res.render('503');
     }
   });
+
+
+
+
 
   module.exports = router; 
   

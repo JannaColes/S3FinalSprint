@@ -4,7 +4,7 @@ const resortsDal = require('../../services/m.resorts.dal')
 
 if(DEBUG) console.log('ROUTE: /api/resorts');
    
-// api/logins
+// api/resorts 
 router.get('/', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/resorts/ GET ' + req.url);
     try {

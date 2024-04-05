@@ -35,27 +35,33 @@
         <h2>Edit / Delete Resorts</h2>
 
         <div id="edit-delete-forms">
-        <form>
-            <label>Search by Resort ID: </label>
-            <input type="number" />
-            <input type="submit" value="Submit">
 
-        </form>
+            <form id="search-by-id-form">
+                <label>Search by Resort ID: </label>
+                <input type="text" id="search-by-id-input" />
+                <button type="button" onclick="searchById()">Search</button>
+            </form>
 
-        <form>
+            <form id="search-by-keyword-form">
+                <label>Search by Keyword: </label>
+                <input type="text" id="search-by-keyword-input" />
+                <button type="button" onclick="searchByKeyword()">Search</button>
+            </form>
 
-            <label>Search by Keyword: </label>
-            <input type="text" /> 
-            <input type="submit" value="Submit">
-
-        </form>
     </div>
 
 
     <div id="resort-section">
         <% theResorts.forEach((resort, i) => { %>
             <div class="resort-profile">
-                <img class="user-destinationImg" src="" alt="Destination Image" width="100px">
+
+            <div class="user-username-div">
+                <p class="user-username"><%= resort._id %></p>
+            </div>
+
+            <div class="user-username-div">
+                <p class="user-username"><%= resort.resort_name %></p>
+            </div>
             
             <div class="user-username-div">
                 <p class="user-username"><%= resort.city %></p>
@@ -83,6 +89,8 @@
        </div>
       
     </div>
+
+    <script src="js/adminFrontEnd.js"></script>
 
     
 </body>
