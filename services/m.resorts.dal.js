@@ -44,8 +44,45 @@ async function getResortsByKeyword(keyword) {
   }
 };
 
+
+
+async function addResort(resortName, city, country, resortType, summary, cost, rate, amenities, isFeatured) {
+  if(DEBUG) console.log("resorts.mongo.dal.addResort()");
+
+  let amenArray = amenities.split(","); 
+
+  let amenFinal = "[";
+
+  for (let i = 0; i < amenArray.length; i++) {
+    amenFinal += `"${amenArray[i]}"`;
+    
+    if (i !== amenArray.length - 1) {
+      amenFinal += ", ";
+    }
+  }
+  amenFinal += "]";
+  if(DEBUG) console.log(amenFinal); 
+
+
+  let newResort = JSON.parse(`{ "resort_name": "${resortName}", "city": "${city}", "country": "${country}", \
+ "resort_type": "${resortType}", "summary": "${summary}", "cost": "${cost}", "current_rate_usd": ${rate}, \
+ "amenities": ${amenFinal}, "is_featured": ${isFeatured}}`);
+  if(DEBUG) console.log(newResort);
+  try {
+    await dal.connect();
+    const result = await dal.db("FinalSprint-Travel").collection("Resorts").insertOne(newResort);
+    return result.insertedId; 
+  } catch(error) {
+    console.log(error);
+    throw error;
+  } finally {
+    dal.close();
+  }
+};
+
 module.exports = {
     getResorts, 
     getResortsById, 
     getResortsByKeyword, 
+    addResort, 
 }

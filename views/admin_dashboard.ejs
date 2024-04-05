@@ -8,32 +8,63 @@
 </head>
 <body>
 
-    <%- include('./partials/admin_nav.ejs') %>
-    <div class="admin content">
+    <nav id="admin-nav">
+        <h1>FinalSprint-Travel Admin Console</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/admin">Admin Home</a>
+        <a href="#Add">Add</a>
+        <a href="#Edit-Delete-Section">Edit/Delete</a>
+    </nav>
+    </nav>
 
-        <h2>Add a Resort </h2>
+    <div id="adminConsole">
 
-        <form action="/resorts" method="POST">
-                <input type="text" name="name" required placeholder="Resort Name">
-                <input type="text" name="city" required placeholder="City">
-                <input type="text" name="country" required placeholder="Country">
-                <input type="text" name="type" required placeholder="Resort Type">
-                <input type="number" name="rate" required placeholder="Current Rate(USD)">
-                <input type="text" name="amenities" required placeholder="Amenities">
-                <textarea name="summary" rows="4" required placeholder="Summary"></textarea>
-                <select name="isFeatured" required>
+        <div id ="Add">
+
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Add</span> a Resort </h2>
+
+        <form id="addResort-form" action="/admin" method="POST">
+            <label for="addResort-name">Resort Name: </label>
+                <input id="addResort-name" type="text" name="name" required placeholder="Resort Name">
+
+                <label for="addResort-city">City: </label>
+                <input id="addResort-city" type="text" name="city" required placeholder="City">
+
+                <label for="addResort-country">Country: </label>
+                <input id="addResort-country" type="text" name="country" required placeholder="Country">
+
+                <label for="addResort-resortType">Resort Type: </label>
+                <input id="addResort-resortType" type="text" name="type" required placeholder="Resort Type">
+
+                <label for="addResort-cost">Cost: </label>
+                <input id="addResort-cost" type="text" name="cost" required placeholder="Low, Middle-Range, High">
+
+                <label for="addResort-rate">Current Rate (USD): </label>
+                <input id="addResort-rate" type="number" name="rate" required placeholder="Current Rate(USD)">
+
+                <label for="addResort-amenities">Amenities: </label>
+                <input id="addResort-amenities" type="text" name="amenities" required placeholder="Amenities">
+
+                <label for="addResort-summary">Summary: </label>
+                <textarea id="addResort-summary" name="summary" rows="4" required placeholder="Summary"></textarea>
+
+                <label for="addResort-featured">Promotion: </label>
+                <select id="addResort-featured" name="isFeatured" required>
                     <option value="true">Featured</option>
                     <option value="false">Not Featured</option>
                 </select>
-            </label></br>
-            <button type="submit">Add</button>
+            <input type="submit" value="Add" /> 
         </form>
+
+        </div>
 
      
      
        <div id="Edit-Delete-Section">
-        <h2>Edit / Delete Resorts</h2>
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Edit</span> or <span id="delete-span">Delete</span> a Resort</h2>
 
+        <h4>Find resorts using a search engine below: </h4>
         <div id="edit-delete-forms">
 
             <form id="search-by-id-form">

@@ -21,6 +21,35 @@ router.get('/', async (req, res) => {
 
 
 
+  router.post('/', async (req, res) => {
+
+    if(DEBUG) console.log("admin.POST");
+    try {
+        if(DEBUG) console.log(req.body.amenities); 
+        await resortsDal.addResort(
+            req.body.name,
+            req.body.city,
+            req.body.country,
+            req.body.type,
+            req.body.summary,
+            req.body.cost, 
+            req.body.rate,
+            req.body.amenities,
+            req.body.isFeatured
+        );
+        res.redirect('/admin'); 
+    } catch (err){
+        if (err.status === 400) {
+            res.status(400).render('usernameError');
+        } else {
+            res.render('503'); 
+        } 
+    }
+    
+  });
+
+
+
   // http://localhost:3000/admin/search
   router.get('/search', async (req, res) => {
     try {

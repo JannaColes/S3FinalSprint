@@ -1,6 +1,7 @@
 *{
     margin: 0; 
     box-sizing: border-box;
+    font-family: "Avenir";
 }
 
 #admin-nav{
@@ -8,12 +9,72 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 40px; 
+    background-color: #027373; 
+    color: white; 
 
 }
 
 #admin-nav a{
+    color: white; 
+    padding: 20px 30px; 
+    text-decoration: none;
+}
+
+#admin-nav a:hover{
+    color: rgb(217, 217, 217); 
+    padding: 20px 30px; 
+    text-decoration: none;
+}
+
+#adminConsole{
+    min-height: 1750px;
+}
+
+.adminConsole-h2{
+    font-size: 2rem;
+    margin: 40px 20px; 
+    border-bottom: 2px solid #027373;  
+}
+
+
+
+#delete-span{
+    color: rgb(131, 5, 5); 
+}
+
+.adminConsole-span{
+    color: #027373; 
+}
+
+
+
+#Add{
+    background-color: rgba(242, 227, 213, .25);
+    padding: 20px 0px; 
+}
+
+#addResort-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    margin-left: 20px; 
+}
+
+#addResort-form input, textarea, select{
+    padding: 10px 0px; 
+    margin-top: 5px; 
+    margin-bottom: 20px; 
+}
+
+#addResort-form button{
+    background-color: #027373;
+    color: white; 
+    border: none; 
+    border-radius: 10px;
+    font-size: 1.25rem; 
     padding: 10px 10px; 
 }
+
 
 #resort-section{
     display: flex;

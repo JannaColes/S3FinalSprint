@@ -1,3 +1,8 @@
+document.getElementById("addResort-form").addEventListener("submit", function(e) {
+    
+})
+
+
 function searchById() {
     const id = document.getElementById('search-by-id-input').value;
     console.log(id); 
