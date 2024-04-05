@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css" /> 
+    <title>Admin Console</title>
+</head>
+<body>
+
+    <%- include('./partials/admin_nav.ejs') %>
+    <div class="admin content">
+
+     
+     
+        <div id="Edit-Delete-Section">
+            <h2>Edit / Delete Resorts</h2>
+    
+            <div id="edit-delete-forms">
+    
+            
+    
+        </div>
+    
+    
+        <div id="resort-section">
+            <% theResorts.forEach((resort, i) => { %>
+                <div class="resort-profile">
+    
+                <div class="user-username-div">
+                    <p class="user-username"><%= resort._id %></p>
+                </div>
+    
+                <div class="user-username-div">
+                    <p class="user-username"><%= resort.resort_name %></p>
+                </div>
+                
+                <div class="user-username-div">
+                    <p class="user-username"><%= resort.city %></p>
+                </div>
+    
+                <div class="user-destination-div">
+                <p class="user-destination"><%= resort.country %></p>
+            </div>
+    
+            <div class="user-hobbies-div">
+                <p class="user-hobbies"><%= resort.resort_type %></p>
+                </div>
+    
+                <a class= "edit-btn" href="/resorts/<%=resort.id%>/put?city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>">Edit</a>
+                <a class= "delete-btn" href="/resorts/<%=resort.id%>/delete?city=<%=resort.city%>">Delete</a>
+                </div>
+            <% }); %>
+        </div>
+    
+                
+          
+    
+    
+         
+           </div>
+            
+      
+
+
+     
+       </div>
+      
+    </div>
+
+    <script src="js/adminFrontEnd.js"></script>
+
+    
+</body>
+</html>

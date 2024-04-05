@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
         }
 
         if(DEBUG) console.log(resorts); 
-        res.render('admin_dashboard', { theResorts: resorts });
+        res.render('admin_search_dashboard', { theResorts: resorts });
     } catch (error) {
         console.error('Error searching for resorts:', error);
         res.status(500).send('Internal Server Error');
