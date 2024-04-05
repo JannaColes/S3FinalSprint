@@ -1,16 +1,46 @@
+<!DOCTYPE html>
 <html lang="en">
-    <body>
-        <%- include('./partials/nav.ejs') %>
-        <h1></h1>
-        <div class="api content">
-            <ul>
-                <li><a href="/api/logins">User Login</a> (READ)</li>
-                <li><a href="/api/admin">Admin Login</a> (READ)</li>
-                <li><a href="/api/create">Create User</a> (READ)</li>
-                <li><a href="/api/search">Search</a> (READ)</li>
-            </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guru - Your Adventure Awaits</title>
     
-        </div>
-    </body>
-    <%- include('./partials/foot.ejs') %>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resorts">Resorts</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/userlogin">User Login</a></li>
+                <li><a href="/adminlogin">Admin Login</a></li>
+            </ul>
+        </nav>
+        <h1>Welcome to Travel Guru</h1>
+        <p>Discover your perfect getaway!</p>
+    </header>
+    <main>
+        <section>
+            <h2>Featured Resorts</h2>
+            <!-- Sample display of featured resorts -->
+            <!-- You would populate this section dynamically with data from your resorts -->
+            <article>
+                <h3>Mountain Paradise</h3>
+                <img src="/images/mountain.jpg" alt="Mountain Resort" />
+                <p>Enjoy a serene stay at our luxury mountain resorts with breathtaking views.</p>
+            </article>
+            <article>
+                <h3>Beachfront Bliss</h3>
+                <img src="/images/beach.jpg" alt="Beach Resort" />
+                <p>Soak up the sun and relax on the pristine beaches at our tropical retreats.</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+    </footer>
+    <script src="/js/main.js"></script> <!-- Link to your JavaScript file, if you have one -->
+</body>
 </html>
