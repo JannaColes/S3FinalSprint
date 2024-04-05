@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
     if(DEBUG) console.log('resorts.DELETE: ' + req.params._id);
     try {
         await resortsDal.deleteResort(req.params._id);
-        res.redirect('/');
+        res.render('admin_resortDeleted', { id: req.params._id });
     } catch {
         res.render('503');
     }
