@@ -73,15 +73,28 @@ router.get('/', async (req, res) => {
 // CRUD Operation: PUT (user edits a resort from MongoDB database)
   router.put('/:_id', async (req, res) => {
     if(DEBUG) console.log('resorts.PUT: ' + req.params._id);
+    if(DEBUG) {
+        console.log(req.params._id, req.body.resort_name, req.body.city, req.body.country, req.body.resort_type, req.body.summary, req.body.cost, req.body.current_rate_usd, req.body.amenities, req.body.is_featured)
+    }; 
     try {
-        await resortsDal.putResort(req.params._id, req.query.resort_name, req.query.city, req.query.country, req.query.resort_type, req.query.summary, req.query.cost, req.query.current_rate_usd, req.query.amenities, req.query.is_featured);
-        res.redirect('/profiles');
+        await resortsDal.putResort(
+            req.params._id, 
+            req.body.resort_name, 
+            req.body.city, 
+            req.body.country, 
+            req.body.resort_type, 
+            req.body.summary, 
+            req.body.cost, 
+            req.body.current_rate_usd, 
+            req.body.amenities, 
+            req.body.is_featured);
+        res.render('admin_resortEdited', { id: req.params._id });
     } catch (err) {
         if (err.status === 400) {
-            res.status(400).render('usernameError', { message: err.message });
+            res.status(400).render('404', { message: err.message });
           } else {
             // Handle other errors
-            res.status(500).render('errorPage', { message: 'An unexpected error occurred.' });
+            res.status(500).render('503', { message: 'An unexpected error occurred.' });
 
     }
 }

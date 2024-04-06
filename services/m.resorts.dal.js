@@ -83,13 +83,37 @@ async function addResort(resortName, city, country, resortType, summary, cost, r
 
 async function putResort(id, rName, ci, co, rType, s, rCost, rate, amen, isFeat) {
   if(DEBUG) console.log("resorts.mongo.dal.putResort()");
+
+
+  let amenArray = amen.split(","); 
+
+
+  const _id = new ObjectId(id);
+
+  const putResort = {
+      _id: _id,
+      resort_name: rName,
+      city: ci,
+      country: co,
+      resort_type: rType,
+      summary: s,
+      cost: rCost,
+      current_rate_usd: parseFloat(rate),
+      amenities: amenArray,
+      is_featured: isFeat
+  };
+
   try {
     await dal.connect();
-    const result = await dal.db("FinalSprint-Travel").collection("Resorts")
-      .replaceOne({_id: new ObjectId(id)},
-        {resort_name: rName, city: ci, country: co, resort_type: rType, summary: s, cost: rCost, current_rate_usd: rate, amenities: amen, is_featured: isFeat}
-        );
+
+    const collection = dal.db("FinalSprint-Travel").collection("Resorts");
+
+    if (DEBUG) console.log(putResort);
+
+    const result = await collection.replaceOne({ _id: _id }, putResort);
+
     return result;
+
   } catch(error) {
     console.log(error);
     throw error;
