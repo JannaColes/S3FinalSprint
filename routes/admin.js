@@ -29,6 +29,15 @@ router.get('/', async (req, res) => {
 
 
 
+    // http://localhost:3000/admin/id/put
+    // CRUD Operation: PUT (takes user to edit_resort.ejs)
+    router.get('/:_id/put', async (req, res) => {
+        if(DEBUG) console.log('resort.Put : ' + req.params._id);
+        res.render('edit_resort', {id: req.params._id});
+      });
+
+
+
 
   // CRUD Operation: POST (user adds a resort to MongoDB database)
   router.post('/', async (req, res) => {
@@ -57,6 +66,27 @@ router.get('/', async (req, res) => {
     }
     
   });
+
+
+
+ //http://localhost:3000/admin/PUT?_id=
+// CRUD Operation: PUT (user edits a resort from MongoDB database)
+  router.put('/:_id', async (req, res) => {
+    if(DEBUG) console.log('resorts.PUT: ' + req.params._id);
+    try {
+        await resortsDal.putResort(req.params._id, req.query.resort_name, req.query.city, req.query.country, req.query.resort_type, req.query.summary, req.query.cost, req.query.current_rate_usd, req.query.amenities, req.query.is_featured);
+        res.redirect('/profiles');
+    } catch (err) {
+        if (err.status === 400) {
+            res.status(400).render('usernameError', { message: err.message });
+          } else {
+            // Handle other errors
+            res.status(500).render('errorPage', { message: 'An unexpected error occurred.' });
+
+    }
+}
+  });
+
 
 
   //http://localhost:3000/admin/DELETE?_id=
