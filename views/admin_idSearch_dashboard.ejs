@@ -43,9 +43,7 @@
                 <th>Admin Options</th>
             </tr>
 
-            <% if (theResorts && theResorts.length > 0) { %>
-            
-            <% theResorts.forEach((resort, i) => { %>
+       
                 <tr>
                     <td class="resort-Id"><%= resort._id %></td>
                     <td><%= resort.resort_name %></td>
@@ -72,37 +70,7 @@
                         <a class= "delete-btn" href="/admin/<%=resort._id%>/delete?_id=<%=resort._id%>">Delete</a>
                     </td>
                 </tr>
-            <% }); %>
-
-            <% } %>
-
-
-            <% if (theResortsPG && theResortsPG.length > 0) { %>
-
-            <% theResortsPG.forEach((resort, i) => { %>
-                <tr>
-                    <td class="resort-Id"><%= resort._id %></td>
-                    <td><%= resort.resort_name %></td>
-                    <td><%= resort.city %></td>
-                    <td><%= resort.country %></td>
-                    <td><%= resort.resort_type %></td>
-                    <td class="resort-summary"><%= resort.summary %></td>
-                    <td><%= resort.cost %></td>
-                    <td>$<%= resort.current_rate_usd %> USD</td>
-                    
-                    <% if(resort.is_featured) { %>
-                    <td>Featured</td>
-                    <% } else { %>
-                        <td>NOT Featured</td>
-                        <% }%>
-                    <td class="resort-AdminBtn">
-                        <a class= "edit-btn" href="/admin/<%=resort._id%>/put?_id=<%=resort._id%>&resort_name=<%=resort.resort_name%>&city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>&summary=<%=resort.summary%>&cost=<%=resort.cost%>&current_rate_usd=<%=resort.current_rate_usd%>&amenities=<%=resort.amenities%>&is_featured=<%=resort.is_featured%>">Edit</a> 
-                        <a class= "delete-btn" href="/admin/<%=resort._id%>/delete?_id=<%=resort._id%>">Delete</a>
-                    </td>
-                </tr>
-            <% }); %>
-
-            <% } %>
+        
 
 
         </table>

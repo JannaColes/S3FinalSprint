@@ -3,10 +3,16 @@ document.getElementById("addResort-form").addEventListener("submit", function(e)
 })
 
 
-function searchById() {
-    const id = document.getElementById('search-by-id-input').value;
+function searchByPostgresId() {
+    const id = document.getElementById('search-by-postgresId-input').value;
     console.log(id); 
-    window.location.href = `/admin/search?id=${id}`;
+    window.location.href = `/admin/searchPostgres?id=${id}`;
+}
+
+function searchByMongoId() {
+    const id = document.getElementById('search-by-mongoId-input').value;
+    console.log(id); 
+    window.location.href = `/admin/searchMongo?id=${id}`;
 }
 
 function searchByKeyword() {

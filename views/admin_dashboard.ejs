@@ -67,10 +67,16 @@
         <h4>Find resorts using a search engine below: </h4>
         <div id="edit-delete-forms">
 
-            <form id="search-by-id-form">
-                <label>Search by Resort ID: </label>
-                <input type="text" id="search-by-id-input" />
-                <button type="button" onclick="searchById()">Search</button>
+            <form id="search-by-postgresId-form">
+                <label>Search by Postgres Resort ID: </label>
+                <input type="text" id="search-by-postgresId-input" />
+                <button type="button" onclick="searchByPostgresId()">Search</button>
+            </form>
+
+            <form id="search-by-mongoId-form">
+                <label>Search by MongoDB Resort ID: </label>
+                <input type="text" id="search-by-mongoId-input" />
+                <button type="button" onclick="searchByMongoId()">Search</button>
             </form>
 
             <form id="search-by-keyword-form">

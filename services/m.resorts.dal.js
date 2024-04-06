@@ -21,7 +21,7 @@ async function getResortsById(id) {
     await dal.connect();
     const cursor = dal.db("FinalSprint-Travel").collection("Resorts").find({ _id: new ObjectId(id) });
     const results = await cursor.toArray();
-    return results;
+    return results[0];
   } catch(error) {
     console.log(error);
   } finally {

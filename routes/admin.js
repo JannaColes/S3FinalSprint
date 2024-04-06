@@ -117,35 +117,104 @@ router.get('/', async (req, res) => {
     }
   });
 
+  // http://localhost:3000/admin/searchMongo
+  router.get('/searchMongo', async (req, res) => {
 
 
-  // http://localhost:3000/admin/search
-  router.get('/search', async (req, res) => {
-    try {
+        const id  = req.query.id;
+        if(DEBUG) console.log(id); 
 
-        const { id, keyword } = req.query;
-        if(DEBUG) console.log(id, keyword); 
+        let resortM;
 
-        let resorts;
-        let resortsPostgres; 
+        try {
+            resortM = await resortsDal.getResortsById(id); 
 
-        if (id) {
-            resorts = await resortsDal.getResortsById(id); 
-        } else if (keyword) {
-      
-            resorts = await resortsDal.getResortsByKeyword(keyword); 
-            resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
-        } else {
+        if(DEBUG) console.log(resortM); 
+        res.render('admin_idSearch_dashboard', { resort: resortM });
 
-            resorts = [];
+        } catch (error) {
+            console.error('Error searching for resorts:', error);
+            res.status(500).send('Internal Server Error');
         }
 
-        if(DEBUG) console.log(resorts, resortsPostgres); 
-        res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
+});
+
+ // http://localhost:3000/admin/searchPostgres
+ router.get('/searchPostgres', async (req, res) => {
+
+
+    const id  = req.query.id;
+    if(DEBUG) console.log(id); 
+
+    let resortPostgres;
+
+    try {
+        resortPostgres = await resortsDalPG.getResortsById(id); 
+
+    if(DEBUG) console.log(resortPostgres); 
+    res.render('admin_idSearch_dashboard', { resort: resortPostgres });
+
     } catch (error) {
         console.error('Error searching for resorts:', error);
         res.status(500).send('Internal Server Error');
     }
+
+});
+
+
+
+  // http://localhost:3000/admin/search
+  router.get('/search', async (req, res) => {
+
+    const keyword = req.query.keyword; 
+    if(DEBUG) console.log(keyword); 
+    try {
+   resorts = await resortsDal.getResortsByKeyword(keyword); 
+   resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
+
+   if(DEBUG) console.log(resorts, resortsPostgres); 
+    res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
+
+
+    } catch  (error) {
+        console.error('Error searching for resorts:', error);
+        res.status(500).send('Internal Server Error');
+    }
+
+
+
+
+
+
+
+
+
+        // const { id, keyword } = req.query;
+        // const keyword = req.query; 
+        // if(DEBUG) console.log(keyword); 
+        // if(DEBUG) console.log(id, keyword); 
+
+    //     let resorts;
+    //     let resortsPostgres; 
+
+    //     if (id) {
+    //         resorts = await resortsDal.getResortsById(id); 
+    //         resortsPostgres = await resortsDalPG.getResortsById(id); 
+    //     } else if (keyword) {
+      
+    //         resorts = await resortsDal.getResortsByKeyword(keyword); 
+    //         resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
+    //     } else {
+
+    //         resorts = [];
+    //     }
+
+    //     if(DEBUG) console.log(resorts, resortsPostgres); 
+    //     res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
+    // } catch (error) {
+    //     console.error('Error searching for resorts:', error);
+    //     res.status(500).send('Internal Server Error');
+    // }
 });
 
   module.exports = router; 

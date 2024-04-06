@@ -5,7 +5,7 @@ var getResorts = async function() {
     if(DEBUG) console.log("resorts.pg.dal.getResorts()");
 
     const query = `SELECT * FROM public.resorts
-    ORDER BY _id ASC LIMIT 100;`; 
+    ORDER BY _id ASC;`; 
 
     try {
         let results = await dal.query(query); 
@@ -22,12 +22,11 @@ async function getResortsById(id) {
     if(DEBUG) console.log("Auth.postgres.dal.getResortsById()");
 
 
-    const query = `SELECT * FROM public.resorts
-    ORDER BY resort_id ASC LIMIT 100;`; 
+    const query = `SELECT * FROM public.resorts WHERE _id = $1`; 
 
     try {
-        let results = await dal.query(query); 
-        return results.rows; 
+        let results = await dal.query(query, [id]); 
+        return results.rows[0]; 
     } catch (error) {
         console.log(error); 
     }
@@ -62,4 +61,5 @@ async function getResortsById(id) {
   module.exports = {
     getResorts, 
     getResortsByKeyword, 
+    getResortsById, 
   }
