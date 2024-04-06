@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "method-override": "^3.0.0",
-    "mongodb": "^6.5.0"
-  },
-  "devDependencies": {}
+    "mongodb": "^6.5.0",
+    "pg": "^8.11.5"
+  }
 }
