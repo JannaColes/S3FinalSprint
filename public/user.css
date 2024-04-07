@@ -1,0 +1,43 @@
+.user-destination{
+
+    display: flex; 
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 20px 20px;
+}
+
+.resort-info-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-destination-imgProfile{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px; 
+    border-radius: 10px;
+    margin-bottom: 20px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+}
+
+.user-destination-imgProfile img{
+  margin-right: 30px; 
+  height: 200px; 
+  width: 300px; 
+  /* object-fit: contain; */
+  border-radius: 10px;
+}
+
+.user-destination-imgProfile h3{
+    margin-bottom: 10px;
+  }
+
+.user-resortSummary{
+    max-width: 40%; 
+    padding-left: 20px; 
+    margin-left: 10px; 
+    text-align: justify;
+    border-left: 1px white solid; 
+}

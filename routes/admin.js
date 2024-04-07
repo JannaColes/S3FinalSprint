@@ -173,7 +173,7 @@ router.get('/', async (req, res) => {
    resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
 
    if(DEBUG) console.log(resorts, resortsPostgres); 
-    res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
+    res.render('user_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
 
 
     } catch  (error) {
