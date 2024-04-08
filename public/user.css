@@ -9,6 +9,8 @@
 .resort-info-section{
     display: flex;
     flex-direction: column;
+    width: 30%; 
+  
 }
 
 .user-destination-imgProfile{
@@ -32,6 +34,21 @@
 
 .user-destination-imgProfile h3{
     margin-bottom: 10px;
+    text-decoration: underline;
+    text-decoration-color: #027373;
+  }
+
+  .user-destination-imgProfile p{
+    line-height: 160%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+
+
+  .user-destination-imgProfile h4{
+    line-height: 170%;
+    font-weight: 400;
   }
 
 .user-resortSummary{
