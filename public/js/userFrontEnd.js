@@ -26,9 +26,9 @@ window.addEventListener("DOMContentLoaded", function() {
                 resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 173, 191, 0.2)'; 
                 userResortImg[i].src = '/images/Safari.jpg'; 
                 break;
-            case 'Ranch Resort':
+            case 'Ranch':
                 resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 173, 191, 0.2)'; 
-                userResortImg[i].src = '/images/Resort.jpg'; 
+                userResortImg[i].src = '/images/Ranch.jpg'; 
                 break;
             case 'Golf Resort':
                 resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 191, 191, 0.2)'; 
@@ -77,6 +77,10 @@ window.addEventListener("DOMContentLoaded", function() {
             case 'Island Resort':
                 resort.parentElement.parentElement.style.backgroundColor = 'rgba(126, 166, 41, 0.2)'; 
                 userResortImg[i].src = '/images/Island.jpg'; 
+                    break;
+            case 'All-Inclusive Resort':
+                resort.parentElement.parentElement.style.backgroundColor = 'rgba(126, 166, 41, 0.2)'; 
+                userResortImg[i].src = '/images/AllInclusive.jpg'; 
                     break;
             default:
                 break;
