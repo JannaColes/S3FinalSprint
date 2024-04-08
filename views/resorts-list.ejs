@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinalSprint-Travel</title>
+  <meta charset="UTF-8">
+  <title>Resorts List</title>
+  <style>
+    .resort-container {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .resort-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    <%- include('./partials/nav.ejs') %>
-    <h1>Welcome to our FinalSprint-Travel</h1>
-    <p>Resorts</p>
+  <h1>Resorts List</h1>
+  <% if (resorts.length > 0) { %>
+    <% resorts.forEach(function(resort) { %>
+      <div class="resort-container">
+        <h2><%= resort.name %></h2>
+        <!-- <img src="/path/to/images/<%= resort.resort_id %>.jpg" alt="<%= resort.name %>" class="resort-image"> -->
+        <p><strong>Location:</strong> <%= resort.city %>, <%= resort.country %></p>
+        <p><strong>Type:</strong> <%= resort.resort_type %></p>
+        <p><strong>Summary:</strong> <%= resort.summary %></p>
+        <p><strong>Cost Category:</strong> <%= resort.cost_category %></p>
+        <p><strong>Current Rate:</strong> $<%= resort.current_rate %></p>
+        <p><strong>Amenities:</strong> <%= resort.amenities.join(', ') %></p>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <p>No resorts found.</p>
+  <% } %>
 </body>
-<%- include('./partials/foot.ejs') %>
 </html>
