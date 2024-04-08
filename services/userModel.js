@@ -58,7 +58,7 @@ class User {
       : [];
 
     const result = await pool.query(
-      `INSERT INTO users (first_name, last_name, email, password, phone_number, date_of_birth, interests, FALSE) 
+      `INSERT INTO users (first_name, last_name, email, password, phone_number, date_of_birth, interests) 
        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
       [
         first_name,
