@@ -1,25 +1,52 @@
-const MongoClient = require('mongodb').MongoClient;
+//authService.js
 
-// Connection URL
-const url = 'mongodb+srv://amydalziel:mdb2021lat@clustersemester3.ks4jtmh.mongodb.net/'; // Replace 'your_connection_string' with your actual connection string
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcryptjs");
+const User = require("./userModel");
 
-// Database Name
-const dbName = 'FinalSprint-Travel'; // Replace 'your_database_name' with your actual database name
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true, // Add this line to pass the req object to the callback
+    },
+    async (req, email, password, done) => {
+      // Make sure to add `req` as the first parameter if you're using it
+      try {
+        const user = await User.findOne({ email: email });
+        if (!user) {
+          return done(null, false, { message: "Incorrect email." });
+        }
 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  if (err) {
-    console.error("Failed to connect to MongoDB Atlas:", err);
-    return;
-  }
-  
-  console.log("Connected successfully to MongoDB Atlas");
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return done(null, false, { message: "Incorrect password." });
+        }
 
-  const db = client.db(dbName);
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    }
+  )
+);
 
-  // Perform operations on the database here
-
-  // Close the connection
-  client.close();
+passport.serializeUser(function (user, done) {
+  console.log("Serializing user:", user);
+  done(null, user.user_id); // Change this line to use user.user_id instead of user.id
 });
 
+passport.deserializeUser(function (user_id, done) {
+  console.log("Deserializing user with ID:", user_id);
+  User.findById(user_id, function (err, user) {
+    console.log("Deserialized user:", user);
+    if (err) {
+      return done(err);
+    }
+    return done(null, user);
+  });
+});
+
+module.exports = passport;
