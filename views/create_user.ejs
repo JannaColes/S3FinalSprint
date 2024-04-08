@@ -1,11 +1,80 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
+    <style>
+        body {
+            background-color: #F2E3D5; /* cream background */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            margin-right: 200px;
+        }
+        h1 {
+            color: #04ADBF;
+            margin-bottom: 50px;
+            margin-right:200px;
+        }
+        h2 {
+            color: #7EA629; /* olive green */
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background-color: #fff; /* white background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 320px;
+            margin-left: 20px;
+        }
+        label {
+            color: #04ADBF; /* cyan color for the labels */
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="submit"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #04BF8F; /* green color */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #7EA629; /* olive green */
+        }
+        img {
+            width: 500px; /* You can adjust as necessary */
+            height: 380px;
+            border: #7EA629 2px solid;
+        }
+        /* Error styles */
+        /* ... Your existing styles for errors ... */
+    </style>
 </head>
 <body>
-    <h1>Create New User</h1>
+    <div class="container">
+        <div>
+            <h1>Become a Guru Voyager</h1>
+            <h2>Register now and find the Guru in You!</h2>
+            <img src="beach.jpeg" alt="Travel Guru Logo"/>
+        </div>
+        <div class="form-container">
     <% if (errors && errors.length > 0) { %>
         <ul>
             <% errors.forEach(function(error) { %>
