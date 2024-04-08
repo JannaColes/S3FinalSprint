@@ -1,29 +1,36 @@
+<!-- search.ejs -->
+
+<!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
-    <body>
-        <%- include('./partials/nav.ejs') %>
-        <div class="search-resorts content">
-            <form action="/resorts/search" method="GET">
-                <label>Search Resorts:</label></br>
-                <input type="text" id="search" name="query" placeholder="Enter resort name" required>
-                </br>
-                <button>Search</button>
-            </form>
-            <div class="search-results">
-                <% if (searchResults.length > 0) { %>
-                    <% searchResults.forEach(resort => { %>
-                        <div class="resort">
-                            <h2><%= resort.name %></h2>
-                            <p><%= resort.location %></p>
-                            <p><%= resort.description %></p>
-                           
-                        </div>
-                    <% }) %>
-                <% } else { %>
-                    <p>No results found</p>
-                <% } %>
+<head>
+    <meta charset="UTF-8">
+    <title>Search Resorts</title>
+    <!-- Include your CSS here -->
+</head>
+<body>
+    <h1>Search Resorts</h1>
+
+    <!-- Display login success message -->
+    <% if (messages && messages.success) { %>
+        <p style="color: green;"><%= messages.success %></p>
+      <% } %>
+      
+
+    <form action="/resorts/search-results" method="get">
+        <input type="text" name="keyword" placeholder="Enter search term" required>
+        <button type="submit">Search</button>
+    </form>
+    
+    <!-- Display resorts if any are found -->
+    <% if (typeof resorts !== 'undefined' && resorts.length > 0) { %>
+        <% resorts.forEach(function(resort) { %>
+            <div class="resort-container">
+                <h2><%= resort.name %></h2>
+                <!-- Display other resort details here -->
             </div>
-        </div>
-    </body>
-    <%- include('./partials/foot.ejs') %>
+        <% }); %>
+    <% } else if (typeof resorts !== 'undefined') { %>
+        <p>No resorts found.</p>
+    <% } %>
+</body>
 </html>
