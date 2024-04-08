@@ -1,4 +1,10 @@
-window.addEventListener("DOMContentLoaded", function() {
+
+    function searchByKeywordUser() {
+        const keyword = document.getElementById('search-by-keyword-input-user').value;
+        console.log(keyword); 
+        window.location.href = `/user/search?keyword=${encodeURIComponent(keyword)}`;
+    }
+    
 
     
     
@@ -90,8 +96,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     
 
-    }
+    
     
 
 
-)

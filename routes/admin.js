@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const myEvent = require('events'); 
+
 const { myEmitter } = require('../logEvents');
 
 
@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
         // if(DEBUG) console.table(theResortsMongo); // MongoDB Results 
         // if(DEBUG) console.table(theResortsPostgres); // Postgres Results 
         res.render('admin_dashboard', {theResortsMongo, theResortsPostgres});
-    } catch (err) {
+    } catch (error) {
         
-        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed.`; 
+        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${error}`; 
         if (DEBUG) console.log(errorMsg); 
         myEmitter.emit('error503', errorMsg); 
 
@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
             res.status(400).render('404');
         } else {
 
-            let errorMsg = `Error 503: ${req.originalUrl} server POST request failed.`; 
+            let errorMsg = `Error 503: ${req.originalUrl} server POST request failed: ${err}`; 
             if (DEBUG) console.log(errorMsg); 
             myEmitter.emit('error503', errorMsg); 
 
@@ -107,11 +107,11 @@ router.get('/', async (req, res) => {
             res.status(400).render('404', { message: err.message });
           } else {
             
-            let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed.`; 
+            let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed: ${err}`; 
             if (DEBUG) console.log(errorMsg); 
             myEmitter.emit('error503', errorMsg); 
 
-            res.status(500).render('503', { message: 'An unexpected error occurred.' });
+            res.render('503'); 
 
     }
 }
@@ -126,9 +126,9 @@ router.get('/', async (req, res) => {
     try {
         await resortsDal.deleteResort(req.params._id);
         res.render('admin_resortDeleted', { id: req.params._id });
-    } catch {
+    } catch (error) {
 
-        let errorMsg = `Error 503: ${req.originalUrl} server DELETE request failed.`; 
+        let errorMsg = `Error 503: ${req.originalUrl} server DELETE request failed: ${error}`; 
         if (DEBUG) console.log(errorMsg); 
         myEmitter.emit('error503', errorMsg); 
 
@@ -198,7 +198,7 @@ router.get('/', async (req, res) => {
    resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
 
    if(DEBUG) console.log(resorts, resortsPostgres); 
-    res.render('user_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
+    res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
 
 
     } catch  (error) {

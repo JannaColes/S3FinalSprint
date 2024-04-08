@@ -3,7 +3,6 @@ const methodOverride = require('method-override');
 const app = express();
 const PORT = 3000;
 
-const myEvent = require('events'); 
 const { myEmitter } = require('./logEvents');
 
 global.DEBUG = true;
@@ -31,6 +30,9 @@ app.get('/', (req, res) => {
 
 const adminRouter = require('./routes/admin')
 app.use('/admin', adminRouter);
+
+const userRouter = require('./routes/user')
+app.use('/user', userRouter);
 
 
 const resortsRouter = require('./routes/resorts')
