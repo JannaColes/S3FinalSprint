@@ -12,9 +12,12 @@ router.get('/', async (req, res) => {
         if(DEBUG) console.table(theResorts);
         res.render('resorts', {theResorts});
     } catch (err) {
-        if(DEBUG) console.log(err);
-        // log this error to an error log file.
+        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${error}`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('error503', errorMsg); 
+
         res.render('503');
+      
     }
   });
 

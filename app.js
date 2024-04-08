@@ -3,6 +3,9 @@ const methodOverride = require('method-override');
 const app = express();
 const PORT = 3000;
 
+const myEvent = require('events'); 
+const { myEmitter } = require('./logEvents');
+
 global.DEBUG = true;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -39,6 +42,10 @@ app.use('/api', apiRouter);
 
 
 app.use((req, res) => {
+
+    let errorMsg = `Route: ${req.url} not found`; 
+            if (DEBUG) console.log(errorMsg); 
+    myEmitter.emit('error404', errorMsg); 
     res.status(404).render('404');
   });
 

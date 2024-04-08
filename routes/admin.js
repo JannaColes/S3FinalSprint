@@ -1,6 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
+const myEvent = require('events'); 
+const { myEmitter } = require('../logEvents');
 
 
 const resortsDal = require('../services/m.resorts.dal'); 
@@ -16,8 +18,11 @@ router.get('/', async (req, res) => {
         // if(DEBUG) console.table(theResortsPostgres); // Postgres Results 
         res.render('admin_dashboard', {theResortsMongo, theResortsPostgres});
     } catch (err) {
-        if(DEBUG) console.log(err);
-        // log this error to an error log file.
+        
+        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed.`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('error503', errorMsg); 
+
         res.render('503');
     }
   });
@@ -64,6 +69,11 @@ router.get('/', async (req, res) => {
         if (err.status === 400) {
             res.status(400).render('404');
         } else {
+
+            let errorMsg = `Error 503: ${req.originalUrl} server POST request failed.`; 
+            if (DEBUG) console.log(errorMsg); 
+            myEmitter.emit('error503', errorMsg); 
+
             res.render('503'); 
         } 
     }
@@ -96,7 +106,11 @@ router.get('/', async (req, res) => {
         if (err.status === 400) {
             res.status(400).render('404', { message: err.message });
           } else {
-            // Handle other errors
+            
+            let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed.`; 
+            if (DEBUG) console.log(errorMsg); 
+            myEmitter.emit('error503', errorMsg); 
+
             res.status(500).render('503', { message: 'An unexpected error occurred.' });
 
     }
@@ -113,13 +127,17 @@ router.get('/', async (req, res) => {
         await resortsDal.deleteResort(req.params._id);
         res.render('admin_resortDeleted', { id: req.params._id });
     } catch {
+
+        let errorMsg = `Error 503: ${req.originalUrl} server DELETE request failed.`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('error503', errorMsg); 
+
         res.render('503');
     }
   });
 
   // http://localhost:3000/admin/searchMongo
   router.get('/searchMongo', async (req, res) => {
-
 
         const id  = req.query.id;
         if(DEBUG) console.log(id); 
@@ -133,8 +151,12 @@ router.get('/', async (req, res) => {
         res.render('admin_idSearch_dashboard', { resort: resortM });
 
         } catch (error) {
-            console.error('Error searching for resorts:', error);
-            res.status(500).send('Internal Server Error');
+            
+            let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${error}`; 
+            if (DEBUG) console.log(errorMsg); 
+            myEmitter.emit('error503', errorMsg); 
+    
+            res.render('503');
         }
 
 });
@@ -155,8 +177,11 @@ router.get('/', async (req, res) => {
     res.render('admin_idSearch_dashboard', { resort: resortPostgres });
 
     } catch (error) {
-        console.error('Error searching for resorts:', error);
-        res.status(500).send('Internal Server Error');
+        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${error}`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('error503', errorMsg); 
+
+        res.render('503');
     }
 
 });
@@ -177,44 +202,14 @@ router.get('/', async (req, res) => {
 
 
     } catch  (error) {
-        console.error('Error searching for resorts:', error);
-        res.status(500).send('Internal Server Error');
+        let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${error}`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('error503', errorMsg); 
+
+        res.render('503');
     }
 
 
-
-
-
-
-
-
-
-        // const { id, keyword } = req.query;
-        // const keyword = req.query; 
-        // if(DEBUG) console.log(keyword); 
-        // if(DEBUG) console.log(id, keyword); 
-
-    //     let resorts;
-    //     let resortsPostgres; 
-
-    //     if (id) {
-    //         resorts = await resortsDal.getResortsById(id); 
-    //         resortsPostgres = await resortsDalPG.getResortsById(id); 
-    //     } else if (keyword) {
-      
-    //         resorts = await resortsDal.getResortsByKeyword(keyword); 
-    //         resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
-    //     } else {
-
-    //         resorts = [];
-    //     }
-
-    //     if(DEBUG) console.log(resorts, resortsPostgres); 
-    //     res.render('admin_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
-    // } catch (error) {
-    //     console.error('Error searching for resorts:', error);
-    //     res.status(500).send('Internal Server Error');
-    // }
 });
 
   module.exports = router; 
