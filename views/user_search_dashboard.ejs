@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css" /> 
+    <link rel="stylesheet" href="/user.css" /> 
+    <title>User Search Results</title>
+</head>
+<body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Home</a>
+            <a href="/admin/add">Add Resort</a>
+            <a href="/admin/edit-delete">Edit/Delete Resorts</a>
+        </nav>
+    </nav>
+    
+    <div class="admin content">
+
+        <div id="Edit-Delete-Section">
+            <h2 class="adminConsole-h2">Find Your <span class="adminConsole-span">Dream Resort</span></h2>
+
+
+        </div>
+
+        <% if (theResorts.length === 0 && theResortsPG.length === 0) { %>
+            <h3>No results found.</h3>
+        <% } else { %>
+
+            <% if (theResorts.length > 0) { %>
+       
+                <% theResorts.forEach((resort, i) => { %>
+                    <div class="user-destination-imgProfile">
+                        <img src="" class="user-resortImg" alt="Image-name" /> 
+                        <div class="resort-info-section">
+                            <h3><%= resort.resort_name %></h3>
+                            <h4><%= resort.city %></h4>
+                            <h4><%= resort.country %></h4>
+                            <h4 class="user-resortType"><%= resort.resort_type %></h4>
+                            <h4>Cost Range: <%= resort.cost %></h4>
+                            <h4>Per Night: $<%= resort.current_rate_usd %> USD</h4>
+                            <% if (resort.is_featured) { %>
+                                <h4>Featured</h4>
+                            <% } else { %>
+                                <h4>NOT Featured</h4>
+                            <% } %>
+                        </div>
+                        <p class="user-resortSummary"><%= resort.summary %></p>
+                    </div>
+                <% }); %>
+            <% } %>
+
+            <% if (theResortsPG.length > 0) { %>
+                <h2>Resorts with PG:</h2>
+                <% theResortsPG.forEach((resort, i) => { %>
+                    <div class="user-destination-imgProfile">
+                        <img src="" class="user-resortImg" alt="Image-name" /> 
+                        <div class="resort-info-section">
+                            <h3><%= resort.resort_name %></h3>
+                            <h4><%= resort.city %></h4>
+                            <h4><%= resort.country %></h4>
+                            <h4 class="user-resortType"><%= resort.resort_type %></h4>
+                            <h4>Cost Range: <%= resort.cost %></h4>
+                            <h4>Per Night: $<%= resort.current_rate_usd %> USD</h4>
+                            <% if (resort.is_featured) { %>
+                                <h4>Featured</h4>
+                            <% } else { %>
+                                <h4>NOT Featured</h4>
+                            <% } %>
+                        </div>
+                        <p class="user-resortSummary"><%= resort.summary %></p>
+                    </div>
+                <% }); %>
+            <% } %>
+
+        <% } %>
+
+    </div>
+    
+    <script src="/js/userFrontEnd.js"></script>
+
+</body>
+</html>

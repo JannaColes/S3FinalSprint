@@ -10,6 +10,10 @@ require("dotenv").config(); // Load environment variables from a .env file into 
 const flash = require("connect-flash");
 // const bodyParser = require("body-parser");
 
+const { myEmitter } = require('./logEvents');
+
+global.DEBUG = true;
+
 const app = express();
 
 // Set up session
@@ -29,6 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 // Static file serving
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(methodOverride('_method')); 
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,6 +45,11 @@ const userLoginRoutes = require("./routes/userlogin");
 const adminLoginRoutes = require("./routes/adminlogin");
 const resortsRoutes = require("./routes/resorts");
 const registerRoutes = require("./routes/register");
+
+const adminRouter = require('./routes/admin');
+const userRouter = require('./routes/user');
+const resortsRouter = require('./routes/resorts'); 
+const apiRouter = require('./routes/api'); 
 
 app.use("/register", registerRoutes); // Add this line to use the register routes
 
@@ -53,8 +64,18 @@ app.use("/userlogin", userLoginRoutes);
 app.use("/resorts", resortsRoutes);
 app.use("/register", registerRoutes);
 
+app.use('/admin', adminRouter);
+app.use('/user', userRouter);
+app.use('/resorts', resortsRouter);
+app.use('/api', apiRouter);
+
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
+
+  let errorMsg = `Route: ${req.url} not found`; 
+            if (DEBUG) console.log(errorMsg); 
+    myEmitter.emit('error404', errorMsg); 
+
   next(createError(404));
 });
 

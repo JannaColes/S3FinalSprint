@@ -1,1 +1,101 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css" /> 
+    <title>Admin Console</title>
+</head>
+<body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru Admin Console</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/admin">Admin Home</a>
+        <a href="#Add">Add</a>
+        <a href="#Edit-Delete-Section">Edit/Delete</a>
+    </nav>
+    </nav>
+
+    <div id="adminConsole">
+
+        <div id ="Add">
+
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Add</span> a Resort </h2>
+
+        <form id="addResort-form" action="/admin" method="POST">
+            <label for="addResort-name">Resort Name: </label>
+                <input id="addResort-name" type="text" name="name" required placeholder="Resort Name">
+
+                <label for="addResort-city">City: </label>
+                <input id="addResort-city" type="text" name="city" required placeholder="City">
+
+                <label for="addResort-country">Country: </label>
+                <input id="addResort-country" type="text" name="country" required placeholder="Country">
+
+                <label for="addResort-resortType">Resort Type: </label>
+                <input id="addResort-resortType" type="text" name="type" required placeholder="Resort Type">
+
+                <label for="addResort-cost">Cost: </label>
+                <input id="addResort-cost" type="text" name="cost" required placeholder="Low, Middle-Range, High">
+
+                <label for="addResort-rate">Current Rate (USD): </label>
+                <input id="addResort-rate" type="number" name="rate" required placeholder="Current Rate(USD)">
+
+                <label for="addResort-amenities">Amenities: </label>
+                <input id="addResort-amenities" type="text" name="amenities" required placeholder="Amenities">
+
+                <label for="addResort-summary">Summary: </label>
+                <textarea id="addResort-summary" name="summary" rows="4" required placeholder="Summary"></textarea>
+
+                <label for="addResort-featured">Promotion: </label>
+                <select id="addResort-featured" name="isFeatured" required>
+                    <option value="true">Featured</option>
+                    <option value="false">Not Featured</option>
+                </select>
+            <input type="submit" value="Add" /> 
+        </form>
+
+        </div>
+
+     
+     
+       <div id="Edit-Delete-Section">
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Edit</span> or <span id="delete-span">Delete</span> a Resort</h2>
+
+        <h4>Find resorts using a search engine below: </h4>
+        <div id="edit-delete-forms">
+
+            <form id="search-by-postgresId-form">
+                <label>Search by <span class="form_span">Postgres Resort ID:</span> </label>
+                <input type="text" id="search-by-postgresId-input" />
+                <button type="button" onclick="searchByPostgresId()">Search</button>
+            </form>
+
+            <form id="search-by-mongoId-form">
+                <label>Search by <span class="form_span">MongoDB Resort ID:</span> </label>
+                <input type="text" id="search-by-mongoId-input" />
+                <button type="button" onclick="searchByMongoId()">Search</button>
+            </form>
+
+            <form id="search-by-keyword-form">
+                <label>Search by <span class="form_span">Keyword:</span> </label>
+                <input type="text" id="search-by-keyword-input" />
+                <button type="button" onclick="searchByKeyword()">Search</button>
+            </form>
+
+    </div>
+
+
+     
+       </div>
+      
+    </div>
+
+    <script src="js/adminFrontEnd.js"></script>
+
+    
+</body>
+</html>
