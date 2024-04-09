@@ -1,0 +1,26 @@
+<!-- views/user-login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <!-- Add your CSS links here -->
+</head>
+<body>
+    <h1>User Login</h1>
+    <% if (message.length > 0) { %>
+        <p style="color: red;"><%= message %></p>
+    <% } %>
+    <form action="/userlogin" method="post">
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
