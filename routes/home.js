@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 
 // You could require your DAL if you need to fetch dynamic content for the homepage
-// const resortsDAL = require('../services/pg.resorts.dal');
+const resortsDal = require('../services/m.resorts.dal'); 
+const resortsDalPG = require('../services/pg.resorts.dal'); 
 
 router.get("/", async (req, res) => {
   try {
-    // If you need to fetch data from your DAL to display on the homepage
-    // const featuredResorts = await resortsDAL.getFeaturedResorts();
+    if(DEBUG) console.log("Home Route"); 
+   
+    let theResortsMongo = await resortsDal.getResorts(); 
+    let theResortsPostgres = await resortsDalPG.getResorts(); 
 
     // Render the 'home.ejs' view file with the featured resorts data
     res.render("home", {

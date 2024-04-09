@@ -18,13 +18,13 @@ global.DEBUG = true;
 const app = express();
 
 // Set up session
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET, // Use a .env variable for the secret
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET, // Use a .env variable for the secret
+//     resave: true,
+//     saveUninitialized: true,
+//   })
+// );
 app.use(flash()); // Initialize flash messages
 
 // Body parsers for JSON and urlencoded form data
@@ -36,9 +36,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(methodOverride('_method')); 
 
+// View engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Import route handlers
 const homeRoutes = require("./routes/home");
@@ -49,25 +53,26 @@ const resortsRoutes = require("./routes/resorts");
 
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
-// const resortsRouter = require('./routes/resorts'); 
+const resortsRouter = require('./routes/resorts'); 
 const apiRouter = require('./routes/api'); 
 
 // app.use("/register", registerRoutes); // Add this line to use the register routes
 
-// View engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+// app.get('/', (req, res) => {
+//   res.render('home');
+ 
+// });
 
 // Use routes
 app.use("/", homeRoutes);
 // app.use("/adminlogin", adminLoginRoutes);
-app.use("/userlogin", userLoginRoutes);
-app.use("/resorts", resortsRoutes);
+// app.use("/userlogin", userLoginRoutes);
+// app.use("/resorts", resortsRoutes);
 // app.use("/register", registerRoutes);
 
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
-// app.use('/resorts', resortsRouter);
+app.use('/resorts', resortsRouter);
 app.use('/api', apiRouter);
 
 // Catch 404 and forward to error handler
@@ -86,9 +91,10 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
+  if(DEBUG) console.log("503 error"); 
   // Render the error page
   res.status(err.status || 500);
-  res.render("error", { error: err }); // Make sure to pass the error object with the key 'error'
+  res.render("503", { error: err }); // Make sure to pass the error object with the key 'error'
 });
 
 // Start the server

@@ -17,8 +17,8 @@ router.use('/resorts', resortsRouter);
 const fullTextRouter = require('./fulltext.js')
 router.use('/full', fullTextRouter);
 
-// http://localhost:3000/api/users/
-const usersRouter = require('./users.js')
-router.use('/users', usersRouter);
+// // http://localhost:3000/api/users/
+// const usersRouter = require('./users.js')
+// router.use('/users', usersRouter);
 
 module.exports = router;
