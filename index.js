@@ -49,7 +49,7 @@ const homeRoutes = require("./routes/home");
 const userLoginRoutes = require("./routes/userlogin");
 const adminLoginRoutes = require("./routes/adminlogin");
 const resortsRoutes = require("./routes/resorts");
-// const registerRoutes = require("./routes/register");
+const registerRoutes = require("./routes/register");
 
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
@@ -68,7 +68,7 @@ app.use("/", homeRoutes);
 // app.use("/adminlogin", adminLoginRoutes);
 // app.use("/userlogin", userLoginRoutes);
 // app.use("/resorts", resortsRoutes);
-// app.use("/register", registerRoutes);
+app.use("/register", registerRoutes);
 
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
