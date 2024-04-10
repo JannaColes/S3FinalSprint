@@ -25,7 +25,10 @@ passport.use(
           return done(null, false, { message: "Incorrect password." });
         }
 
-        return done(null, user);
+        const isAdmin = user.is_admin || false; 
+        console.log(isAdmin); 
+
+        return done(null, {...user, isAdmin});
       } catch (err) {
         return done(err);
       }
@@ -35,20 +38,23 @@ passport.use(
 
 passport.serializeUser(function (user, done) {
   console.log("Serializing user:", user);
-  done(null, user.user_id); // Change this line to use user.user_id instead of user.id
+  done(null, { userId: user.user_id, isAdmin: user.isAdmin }); // Change this line to use user.user_id instead of user.id
 });
 
-passport.deserializeUser(async function (user_id, done) {
-
+passport.deserializeUser(async function ({ userId, isAdmin }, done) {
   try {
-    console.log("Deserializing user with ID:", user_id);
-  const user = await User.findById(user_id);  
-    done(null, user);
+    console.log("Deserializing user with ID:", userId);
+    const user = await User.findById(userId);
+    if (user) {
+      user.isAdmin = isAdmin; // Attach isAdmin flag to user object
+      done(null, user);
+    } else {
+      done(new Error('User not found during deserialization'));
+    }
   } catch (error) {
-    console.log(error); 
-    
+    done(error);
   }
-  
 });
+
 
 module.exports = passport;

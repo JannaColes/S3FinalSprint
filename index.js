@@ -63,13 +63,13 @@ const apiRouter = require('./routes/api');
 
 // Use routes
 app.use("/", noCheck, homeRoutes);
-app.use("/adminlogin", adminLoginRoutes);
+app.use("/adminlogin", checkNotAuthenticated, adminLoginRoutes);
 app.use("/userlogin", checkNotAuthenticated, userLoginRoutes);
 // app.use("/resorts", resortsRoutes);
 app.use("/register", checkNotAuthenticated, registerRoutes);
 
-app.use('/admin', checkAuthenticated, adminRouter);
-app.use('/user', checkAuthenticated, userRouter);
+app.use('/admin', checkAdmin, adminRouter);
+app.use('/user', checkUser, userRouter);
 // app.use('/resorts', resortsRouter);
 app.use('/api', noCheck, apiRouter);
 
@@ -115,6 +115,20 @@ function checkNotAuthenticated(req, res, next) {
       return res.redirect('/user');
   }
   return next();
+}
+
+function checkUser(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next(); 
+  }
+  res.redirect('/userlogin'); 
+}
+
+function checkAdmin(req, res, next) {
+  if (req.isAuthenticated() && req.user.isAdmin) {
+    return next(); 
+  }
+  res.redirect('/userlogin'); 
 }
 
 // Start the server

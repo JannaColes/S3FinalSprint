@@ -89,6 +89,8 @@ userResort.forEach((resort, i) => {
             userResortImg[i].src = '/images/AllInclusive.jpg'; 
                 break;
         default:
+            resort.parentElement.parentElement.style.backgroundColor = 'rgba(126, 166, 41, 0.2)'; 
+            userResortImg[i].src = '/images/userBanner.jpg'; 
             break;
 
     }
