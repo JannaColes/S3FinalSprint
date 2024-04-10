@@ -18,13 +18,14 @@ global.DEBUG = true;
 const app = express();
 
 // Set up session
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET, // Use a .env variable for the secret
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // Use a .env variable for the secret
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 app.use(flash()); // Initialize flash messages
 
 // Body parsers for JSON and urlencoded form data
@@ -41,8 +42,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Passport middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import route handlers
 const homeRoutes = require("./routes/home");
@@ -58,44 +59,63 @@ const apiRouter = require('./routes/api');
 
 // app.use("/register", registerRoutes); // Add this line to use the register routes
 
-// app.get('/', (req, res) => {
-//   res.render('home');
- 
-// });
+
 
 // Use routes
-app.use("/", homeRoutes);
-// app.use("/adminlogin", adminLoginRoutes);
-// app.use("/userlogin", userLoginRoutes);
+app.use("/", noCheck, homeRoutes);
+app.use("/adminlogin", adminLoginRoutes);
+app.use("/userlogin", checkNotAuthenticated, userLoginRoutes);
 // app.use("/resorts", resortsRoutes);
-app.use("/register", registerRoutes);
+app.use("/register", checkNotAuthenticated, registerRoutes);
 
-app.use('/admin', adminRouter);
-app.use('/user', userRouter);
-app.use('/resorts', resortsRouter);
-app.use('/api', apiRouter);
+app.use('/admin', checkAuthenticated, adminRouter);
+app.use('/user', checkAuthenticated, userRouter);
+// app.use('/resorts', resortsRouter);
+app.use('/api', noCheck, apiRouter);
 
 // Catch 404 and forward to error handler
-app.use(function (req, res, next) {
+// app.use(function (req, res, next) {
 
-  let errorMsg = `Route: ${req.url} not found`; 
-            if (DEBUG) console.log(errorMsg); 
-    myEmitter.emit('error404', errorMsg); 
+//   let errorMsg = `Route: ${req.url} not found`; 
+//             if (DEBUG) console.log(errorMsg); 
+//     myEmitter.emit('error404', errorMsg); 
 
-  next(createError(404));
-});
+//   next(createError(404));
+// });
 
 // Error handler
-app.use(function (err, req, res, next) {
-  // Set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+// app.use(function (err, req, res, next) {
+//   // Set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  if(DEBUG) console.log("503 error"); 
-  // Render the error page
-  res.status(err.status || 500);
-  res.render("503", { error: err }); // Make sure to pass the error object with the key 'error'
-});
+//   if(DEBUG) console.log("503 error"); 
+//   // Render the error page
+//   res.status(err.status || 500);
+//   res.render("503", { error: err }); // Make sure to pass the error object with the key 'error'
+// });
+
+
+function noCheck(req, res, next) {
+  if(DEBUG) console.log("noCheck"); 
+  return next(); 
+}
+
+
+function checkAuthenticated(req, res, next) {
+  if ( req.isAuthenticated()) {
+    if(DEBUG) console.log("checkAuth"); 
+      return next();
+  }
+  res.redirect('/userlogin');
+}
+function checkNotAuthenticated(req, res, next) {
+  if ( req.isAuthenticated()) {
+    if(DEBUG) console.log("checkNOTAuth"); 
+      return res.redirect('/user');
+  }
+  return next();
+}
 
 // Start the server
 const PORT = process.env.PORT || 3000;

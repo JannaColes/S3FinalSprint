@@ -4,10 +4,9 @@ const pool = require("./pg_auth_db");
 const bcrypt = require("bcrypt");
 
 class User {
-  constructor(email, password, id) {
+  constructor(email, password) {
     this.email = email;
     this.password = password; // This should be a hashed password
-    this.id = id;
   }
 
   // finding a user by email
@@ -57,20 +56,28 @@ class User {
       ? interests.split(",").map((interest) => interest.trim())
       : [];
 
-    const result = await pool.query(
-      `INSERT INTO users (first_name, last_name, email, password, phone_number, date_of_birth, interests) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-      [
-        first_name,
-        last_name,
-        email,
-        hashedPassword,
-        phone_number,
-        date_of_birth,
-        interestArray,
-      ]
-    );
-    return result.rows[0];
+      try {
+        const result = await pool.query(
+          `INSERT INTO users (first_name, last_name, email, password, phone_number, date_of_birth, interests) 
+           VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+          [
+            first_name,
+            last_name,
+            email,
+            hashedPassword,
+            phone_number,
+            date_of_birth,
+            interestArray,
+          ]
+        );
+        console.log(result.rows[0]); 
+        return result.rows[0];
+        
+      } catch (error) {
+        console.log(error); 
+        
+      }
+   
   }
 }
 

@@ -38,15 +38,17 @@ passport.serializeUser(function (user, done) {
   done(null, user.user_id); // Change this line to use user.user_id instead of user.id
 });
 
-passport.deserializeUser(function (user_id, done) {
-  console.log("Deserializing user with ID:", user_id);
-  User.findById(user_id, function (err, user) {
-    console.log("Deserialized user:", user);
-    if (err) {
-      return done(err);
-    }
-    return done(null, user);
-  });
+passport.deserializeUser(async function (user_id, done) {
+
+  try {
+    console.log("Deserializing user with ID:", user_id);
+  const user = await User.findById(user_id);  
+    done(null, user);
+  } catch (error) {
+    console.log(error); 
+    
+  }
+  
 });
 
 module.exports = passport;

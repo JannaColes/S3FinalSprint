@@ -4,7 +4,7 @@ const User = require("../services/userModel"); // assuming userModel handles you
  
 // Display the user registration form
 router.get("/", (req, res) => {
-  res.render("create-user", { errors: null }); // pass null or an empty array if you don't have any errors to show initially
+  res.render("create_user", { errors: null }); // pass null or an empty array if you don't have any errors to show initially
 });
  
 // Handle the user registration form submission
@@ -15,7 +15,7 @@ router.post("/", async (req, res, next) => {
     res.redirect("/userlogin"); // Redirect to home or login page on successful registration
   } catch (error) {
     // If there's an error (e.g., email already exists), re-render the form with an error message
-    res.render("create-user", { errors: [error.message] });
+    res.render("create_user", { errors: [error.message] });
   }
 });
  

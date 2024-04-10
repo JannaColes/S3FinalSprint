@@ -3,10 +3,15 @@ const router = express.Router();
 const passport = require("../services/authService");
 const logUserLogin = require("../services/loginLogger");
 const flash = require("connect-flash");
+
 // Display the user login form
 router.get("/", (req, res) => {
-  console.log("Rendering login form.");
-  res.render("user-login", { message: req.flash("error") });
+  try {
+    console.log("Rendering login form.");
+    res.render("user-login", { message: req.flash("error") });
+  } catch (error) {
+    console.log(error); 
+  }
 });
 
 // Handle the user login form submission
@@ -37,7 +42,11 @@ router.post("/", (req, res, next) => {
         console.log("Redirecting to search page.");
         // Save the session before redirecting
         req.session.save(() => {
-          res.redirect("./resorts/search");
+          if(user.is_admin) {
+            res.redirect("/admin"); 
+          } 
+          else {res.redirect("/user");}
+    
         });
       } catch (error) {
         console.error("Logging login failed:", error);
