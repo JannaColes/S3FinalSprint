@@ -4,13 +4,15 @@ const passport = require("../services/authService");
 const logUserLogin = require("../services/loginLogger");
 const flash = require("connect-flash");
 
+const { myEmitter } = require('../logEvents'); 
+
 // Display the user login form
 router.get("/", (req, res) => {
   try {
     console.log("Rendering login form.");
     res.render("user-login", { message: req.flash("error"), heading: "Hi, Hiya, Howdy, G'Day.", customer: true});
   } catch (error) {
-    console.log(error); 
+    if(DEBUG) console.log(error); 
   }
 });
 
@@ -49,7 +51,9 @@ router.post("/", (req, res, next) => {
     
         });
       } catch (error) {
-        console.error("Logging login failed:", error);
+        let errorMsg = `User Login Failed: ${req.url}`; 
+        if (DEBUG) console.log(errorMsg); 
+        myEmitter.emit('errorUserLogins', errorMsg);   
         next(error);
       }
     });

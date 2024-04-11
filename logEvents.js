@@ -14,10 +14,9 @@ const { format, getYear } = require('date-fns');
 
 
 
-// myEmitter set up for various 'errors' (404, 503): 
-
-// If the user enters an invalid route, a 404 Error is given 
+// myEmitter set up for various 'errors' (404, 503, userLogins): 
 // An event is triggered and a message sent to both the console and the 'logs' directory. 
+
 myEmitter.on('error404', (url) => {
     setUpDirectories('error404Logs', url); 
     }
@@ -29,12 +28,11 @@ myEmitter.on('error503', (url) => {
     }
 ); 
 
+myEmitter.on('errorUserLogins', (url) => {
+    setUpDirectories('errorUserLogins', url); 
+    }
+); 
 
-// If the user enters a valid route, an if/else statement determines if there is an internal error (500) or sucess message (200) (routes.js - fetchHtml function)
-// An event is triggered and a message sent to both the console and the 'logs' directory. 
-myEmitter.on('route', (url) => {
-    setUpDirectories('routeLogs', url); 
-}); 
 
 
 // An async function that sets up an organized directory (if it does not already exist) to log the 'error' and 'routes' events triggered. 
