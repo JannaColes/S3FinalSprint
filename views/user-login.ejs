@@ -18,7 +18,7 @@
 
     <div id="user-login-page">
 
-    <h1><span id="green-span">Hi, Hiya, Howdy, G'Day: </span></h1>
+    <h1><span id="green-span"><%= heading %> </span></h1>
 
 
     
@@ -41,7 +41,12 @@
         </div>
         <button type="submit">Login</button>
 
+        <% if (customer === true) { %>
         <p>Don't have an account? <a href="/register">Register Today!</a></p>
+        <% } else { %>
+        <p>Trouble logging in? </p>
+        <p>Contact <span class="bold-text">helpdesk@travelguru.com </span></p>
+            <% }; %>
      
     </form>
 

@@ -8,7 +8,7 @@ const flash = require("connect-flash");
 router.get("/", (req, res) => {
   try {
     console.log("Rendering login form.");
-    res.render("user-login", { message: req.flash("error") });
+    res.render("user-login", { message: req.flash("error"), heading: "Hi, Hiya, Howdy, G'Day.", customer: true});
   } catch (error) {
     console.log(error); 
   }
