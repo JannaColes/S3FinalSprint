@@ -67,6 +67,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+
+        .home-img{
+            display: flex; 
+            justify-content: space-around;
+        }
+
         h3 {
             color: #04ADBF; /* teal color for headings */
         }
@@ -105,13 +111,21 @@
             <!-- You would populate this section dynamically with data from your resorts -->
             <article>
                 <h3>Mountain Paradise</h3>
+                <div class="home-img">
                 <img src="/images/HomeImage2.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <img src="/images/HomeImage4.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+            </div>
                 <p>Enjoy a serene stay at our luxury mountain resorts with breathtaking views.</p>
+    
             </article>
             <article>
                 <h3>Beachfront Bliss</h3>
-                <img src="/images/HomeImage1.jpg" alt="Beach Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <div class="home-img">
+                <img src="/images/HomeImage1.jpg" alt="Beach Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+                <img src="/images/HomeImage5.jpg" alt="Mountain Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+            </div>
                 <p>Soak up the sun and relax on the pristine beaches at our tropical retreats.</p>
+                
             </article>
         </section>
     </main>
