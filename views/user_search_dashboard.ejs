@@ -13,9 +13,7 @@
         <h1>Travel Guru</h1>
         <nav>
             <a href="/">Home</a>
-            <a href="/admin">Admin Home</a>
-            <a href="/admin/add">Add Resort</a>
-            <a href="/admin/edit-delete">Edit/Delete Resorts</a>
+            <a href="/user">User Console</a>
         </nav>
     </nav>
     
@@ -55,7 +53,7 @@
             <% } %>
 
             <% if (theResortsPG.length > 0) { %>
-                <h2>Resorts with PG:</h2>
+          
                 <% theResortsPG.forEach((resort, i) => { %>
                     <div class="user-destination-imgProfile">
                         <img src="" class="user-resortImg" alt="Image-name" /> 
@@ -80,6 +78,10 @@
         <% } %>
 
     </div>
+
+    <footer>
+        <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+    </footer>
     
     <script src="/js/userFrontEnd.js"></script>
 

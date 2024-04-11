@@ -20,6 +20,10 @@ userResort.forEach((resort, i) => {
             resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 173, 191, 0.2)'; 
             userResortImg[i].src = '/images/PetFriendly.jpg'; 
             break;
+        case 'Pet-Friendly Resort':
+            resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 173, 191, 0.2)'; 
+            userResortImg[i].src = '/images/PetFriendly.jpg'; 
+            break;
         case 'Ski Resort':
             resort.parentElement.parentElement.style.backgroundColor = 'rgba(4, 173, 191, 0.2)'; 
             userResortImg[i].src = '/images/Ski.jpg'; 
