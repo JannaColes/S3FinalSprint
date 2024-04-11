@@ -71,30 +71,35 @@ app.use("/register", checkNotAuthenticated, registerRoutes);
 app.use('/admin', checkAdmin, adminRouter);
 app.use('/user', checkUser, userRouter);
 // app.use('/resorts', resortsRouter);
-app.use('/api', noCheck, apiRouter);
+app.use('/api', checkAdmin, apiRouter);
+
 
 // Catch 404 and forward to error handler
-// app.use(function (req, res, next) {
+app.use(function (req, res, next) {
 
-//   let errorMsg = `Route: ${req.url} not found`; 
-//             if (DEBUG) console.log(errorMsg); 
-//     myEmitter.emit('error404', errorMsg); 
+  let errorMsg = `Route: ${req.url} not found`; 
+            if (DEBUG) console.log(errorMsg); 
+    myEmitter.emit('error404', errorMsg); 
 
-//   next(createError(404));
-// });
+  next(createError(404));
+});
+
 
 // Error handler
-// app.use(function (err, req, res, next) {
-//   // Set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use(function (err, req, res, next) {
+  // Set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-//   if(DEBUG) console.log("503 error"); 
-//   // Render the error page
-//   res.status(err.status || 500);
-//   res.render("503", { error: err }); // Make sure to pass the error object with the key 'error'
-// });
+  if(DEBUG) console.log("503 error"); 
+  // Render the error page
+  res.status(err.status || 500);
+  res.render("503", { error: err }); // Make sure to pass the error object with the key 'error'
+});
 
+
+
+// Middleware Functions for allowing users to access (or NOT access) routes. 
 
 function noCheck(req, res, next) {
   if(DEBUG) console.log("noCheck"); 
