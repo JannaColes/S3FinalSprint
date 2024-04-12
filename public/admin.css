@@ -187,5 +187,49 @@ footer {
   .bold-text{
     font-weight: 700;
   }
+
+
+  .admin-edit-content form{
+    margin: 40px 20px; 
+  }
+
+  .admin-edit-content label{
+   display: flex;
+   flex-direction: column;
+   max-width: 600px; 
+  }
+
+  .admin-edit-content input{
+    margin-top: 15px; 
+   }
+
+   .admin-edit-content button{
+    background-color: #027373;
+    color: white; 
+    border: none; 
+    border-radius: 10px;
+    font-size: 1.25rem; 
+    padding: 10px 10px; 
+    margin-top: 0px; 
+   }
+
+   .admin-delete-content form{
+    margin: 40px 20px; 
+   }
+
+   .admin-delete-content button{
+    margin: 40px 20px; 
+    background-color: rgb(131, 5, 5);
+    color: white; 
+    border: none; 
+    border-radius: 10px;
+    font-size: 1.25rem; 
+    padding: 10px 10px; 
+    margin-top: 0px; 
+   }
+
+   .red-span{
+    color:rgb(131, 5, 5); 
+   }
   
 
