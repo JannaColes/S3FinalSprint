@@ -1,22 +1,46 @@
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="stylesheet" href="/user.css" />
+
     <body>
-        <%- include('./partials/nav.ejs') %>
-        <div class="edit content">
-            <form action="/resorts/<%= locals.theId %>?_method=PATCH" method="POST">
-                <label>Edit Resort Details:</br>
-                    <input type="text" name="name" value="<%= locals.resort.name %>" required placeholder="Resort Name">
-                    <input type="number" name="price" value="<%= locals.resort.price %>" required placeholder="Price">
-                    <input type="text" name="amenity" value="<%= locals.resort.amenity %>" required placeholder="Amenity">
-                    <textarea name="summary" rows="4" required placeholder="Summary"><%= locals.resort.summary %></textarea>
-                    <select name="isFeatured" required>
-                        <option value="true" <% if (locals.resort.isFeatured) { %>selected<% } %>>Featured</option>
-                        <option value="false" <% if (!locals.resort.isFeatured) { %>selected<% } %>>Not Featured</option>
-                    </select>
+
+        <nav id="admin-nav">
+            <h1>EDIT RESORT</h1>
+            <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Home</a>
+            <a href="#Add">Add</a>
+            <a href="#Edit-Delete-Section">Edit/Delete</a>
+            <a href="/userlogin/logout">Logout</a>
+        </nav>
+        </nav>
+
+        <div class="admin-edit-content">
+            <form action="/admin/<%= locals.id %>?_method=PUT" method="POST">
+                <label>
+                    <h2>Edit Resort Details:</h2></br>
+                    <input type="text" name="resort_name" value="<%= locals.resort_name %>" required placeholder="Resort Name">
+                    <input type="text" name="city" value="<%= locals.city %>" required placeholder="City">  
+                    <input type="text" name="country" value="<%= locals.country %>" required placeholder="Country">
+                    <input type="text" name="resort_type" value="<%= locals.resort_type %>" required placeholder="Resort Type">
+                    <textarea name="summary" rows="4" required placeholder="Summary"><%= locals.summary %></textarea> 
+                    <input type="text" name="cost" value="<%= locals.cost %>" required placeholder="Cost"> 
+                    <input type="number" name="current_rate_usd" value="<%= locals.current_rate_usd %>" required placeholder="Current Rate USD"> 
+                    <input type="text" name="amenities" value="<%= locals.amenities %>" required placeholder="Amenities"> 
+    
+                    <select name="is_featured" required>
+                        <option value="true" <% if (locals.isFeatured) { %>selected<% } %>>Featured</option>
+                        <option value="false" <% if (!locals.isFeatured) { %>selected<% } %>>Not Featured</option>
+                    </select> 
                 </label></br>
                 <button type="submit">Edit</button>
             </form>
         </div>
+
+        <footer>
+            <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+        </footer>
+
     </body>
-    <%- include('./partials/foot.ejs') %>
+
 </html>

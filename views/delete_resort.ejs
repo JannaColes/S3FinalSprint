@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="stylesheet" href="/user.css" />
+
+    <title>Delete Resort</title>
+
+</head>
+
+    <body>
+
+        <nav id="admin-nav">
+            <h1>DELETE RESORT</h1>
+            <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Home</a>
+            <a href="#Add">Add</a>
+            <a href="#Edit-Delete-Section">Edit/Delete</a>
+            <a href="/userlogin/logout">Logout</a>
+        </nav>
+        </nav>
+    
+        <div class="admin-delete-content">
+            <form id="delete-form" action="/admin/<%= locals.id %>?_method=DELETE" method="POST">
+                <label>Confirm you wish to <span class="red-span">DELETE</span> your profile: 
+                </label>
+                <input type="text" id="<%= locals.id %>" name="resort" value="<%= locals.id %>" readonly>
+                <button>DELETE</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+        </footer>
+
+    </body>
+
+</html>
