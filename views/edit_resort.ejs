@@ -19,9 +19,9 @@
             <form action="/admin/<%= locals.id %>?_method=PUT" method="POST">
                 <label>
                     <h2>Edit Resort Details:</h2></br>
-                    <input type="text" name="resort_name" value="<%= locals.resort_name %>" required placeholder="Resort Name">
-                    <input type="text" name="city" value="<%= locals.city %>" required placeholder="City">  
-                    <input type="text" name="country" value="<%= locals.country %>" required placeholder="Country">
+                    <input type="text" name="resort_name" value="<%= locals.resort_name %>" required placeholder="<%= locals.resort_name %>">
+                    <input type="text" name="city" value="<%= locals.city %>" required placeholder="<%= locals.city %>">  
+                    <input type="text" name="country" value="<%= locals.country %>" required placeholder="<%= locals.country %>">
                     <input type="text" name="resort_type" value="<%= locals.resort_type %>" required placeholder="Resort Type">
                     <textarea name="summary" rows="4" required placeholder="Summary"><%= locals.summary %></textarea> 
                     <input type="text" name="cost" value="<%= locals.cost %>" required placeholder="Cost"> 

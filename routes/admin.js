@@ -41,7 +41,18 @@ router.get('/', async (req, res) => {
     // CRUD Operation: PUT (takes user to edit_resort.ejs)
     router.get('/:_id/put', async (req, res) => {
         if(DEBUG) console.log('resort.Put : ' + req.params._id);
-        res.render('edit_resort', {id: req.params._id});
+        if(DEBUG) console.log(req.query.resort_name); 
+        res.render('edit_resort', 
+        {id: req.params._id,
+        resort_name: req.query.resort_name, 
+        city: req.query.city, 
+        country: req.query.country,
+        resort_type: req.query.resort_type,
+        summary: req.query.summary,
+        cost: req.query.cost,
+        current_rate_usd: req.query.current_rate_usd,
+        amenities: req.query.amenities,
+        is_featured: req.query.is_featured});
       });
 
 
@@ -89,32 +100,70 @@ router.get('/', async (req, res) => {
     if(DEBUG) {
         console.log(req.params._id, req.body.resort_name, req.body.city, req.body.country, req.body.resort_type, req.body.summary, req.body.cost, req.body.current_rate_usd, req.body.amenities, req.body.is_featured)
     }; 
-    try {
-        await resortsDal.putResort(
-            req.params._id, 
-            req.body.resort_name, 
-            req.body.city, 
-            req.body.country, 
-            req.body.resort_type, 
-            req.body.summary, 
-            req.body.cost, 
-            req.body.current_rate_usd, 
-            req.body.amenities, 
-            req.body.is_featured);
-        res.render('admin_resortEdited', { id: req.params._id });
-    } catch (err) {
-        if (err.status === 400) {
-            res.status(400).render('404', { message: err.message });
-          } else {
-            
-            let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed: ${err}`; 
-            if (DEBUG) console.log(errorMsg); 
-            myEmitter.emit('error503', errorMsg); 
 
-            res.render('503'); 
+    let idString = req.params._id; 
+    if(DEBUG) console.log(idString.length); 
+
+    if(idString.length === 24) {
+
+        try {
+            await resortsDal.putResort(
+                req.params._id, 
+                req.body.resort_name, 
+                req.body.city, 
+                req.body.country, 
+                req.body.resort_type, 
+                req.body.summary, 
+                req.body.cost, 
+                req.body.current_rate_usd, 
+                req.body.amenities, 
+                req.body.is_featured);
+            res.render('admin_resortEdited', { id: req.params._id });
+        } catch (err) {
+            if (err.status === 400) {
+                res.status(400).render('404', { message: err.message });
+              } else {
+                
+                let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed: ${err}`; 
+                if (DEBUG) console.log(errorMsg); 
+                myEmitter.emit('error503', errorMsg); 
+    
+                res.render('503'); 
+    
+        }
+    }
+
+    } else {
+
+        try {
+            await resortsDalPG.putResort(
+                req.params._id, 
+                req.body.resort_name, 
+                req.body.city, 
+                req.body.country, 
+                req.body.resort_type, 
+                req.body.summary, 
+                req.body.cost, 
+                req.body.current_rate_usd, 
+                req.body.amenities, 
+                req.body.is_featured);
+            res.render('admin_resortEdited', { id: req.params._id });
+        } catch (err) {
+            if (err.status === 400) {
+                res.status(400).render('404', { message: err.message });
+              } else {
+                
+                let errorMsg = `Error 503: ${req.originalUrl} server PUT request failed: ${err}`; 
+                if (DEBUG) console.log(errorMsg); 
+                myEmitter.emit('error503', errorMsg); 
+    
+                res.render('503'); 
+    
+        }
+    }
 
     }
-}
+
   });
 
 
