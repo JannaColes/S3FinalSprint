@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css" /> 
+    <title>Admin Console</title>
+</head>
+<body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru Admin Console</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/admin">Admin Home</a>
+        <a href="/admin">Add</a>
+        <a href="/admin">Edit/Delete</a>
+    </nav>
+    </nav>
+    
+    <div class="admin content">
+
+    <div id="Edit-Delete-Section">
+        <h2 class="adminConsole-h2"><span class="adminConsole-span">Edit</span> or <span id="delete-span">Delete</span> a Resort</h2>
+
+        <div id="edit-delete-forms"></div>
+
+    </div>
+
+    <div id="resort-section">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Type</th>
+                <th>Summary</th>
+                <th>Cost</th>
+                <th>Rate</th>
+                <th>Amenities</th>
+                <th>Promotion</th>
+                <th>Admin Options</th>
+            </tr>
+
+            <% if (theResorts && theResorts.length > 0) { %>
+            
+            <% theResorts.forEach((resort, i) => { %>
+                <tr>
+                    <td class="resort-Id"><%= resort._id %></td>
+                    <td><%= resort.resort_name %></td>
+                    <td><%= resort.city %></td>
+                    <td><%= resort.country %></td>
+                    <td><%= resort.resort_type %></td>
+                    <td class="resort-summary"><%= resort.summary %></td>
+                    <td><%= resort.cost %></td>
+                    <td>$<%= resort.current_rate_usd %> USD</td>
+                    <td>
+                        <ul>
+                            <% resort.amenities.forEach((amenity) => { %>
+                                <li><%= amenity %></li>
+                            <% }); %>
+                        </ul>
+                    </td>
+                    <% if(resort.is_featured) { %>
+                    <td>Featured</td>
+                    <% } else { %>
+                        <td>NOT Featured</td>
+                        <% }%>
+                    <td class="resort-AdminBtn">
+                        <a class= "edit-btn" href="/admin/<%=resort._id%>/put?_id=<%=resort._id%>&resort_name=<%=resort.resort_name%>&city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>&summary=<%=resort.summary%>&cost=<%=resort.cost%>&current_rate_usd=<%=resort.current_rate_usd%>&amenities=<%=resort.amenities%>&is_featured=<%=resort.is_featured%>">Edit</a> 
+                        <a class= "delete-btn" href="/admin/<%=resort._id%>/delete?_id=<%=resort._id%>">Delete</a>
+                    </td>
+                </tr>
+            <% }); %>
+
+            <% } %>
+
+
+            <% if (theResortsPG && theResortsPG.length > 0) { %>
+
+            <% theResortsPG.forEach((resort, i) => { %>
+                <tr>
+                    <td class="resort-Id"><%= resort._id %></td>
+                    <td><%= resort.resort_name %></td>
+                    <td><%= resort.city %></td>
+                    <td><%= resort.country %></td>
+                    <td><%= resort.resort_type %></td>
+                    <td class="resort-summary"><%= resort.summary %></td>
+                    <td><%= resort.cost %></td>
+                    <td>$<%= resort.current_rate_usd %> USD</td>
+                    
+                    <% if(resort.is_featured) { %>
+                    <td>Featured</td>
+                    <% } else { %>
+                        <td>NOT Featured</td>
+                        <% }%>
+                    <td class="resort-AdminBtn">
+                        <a class= "edit-btn" href="/admin/<%=resort._id%>/put?_id=<%=resort._id%>&resort_name=<%=resort.resort_name%>&city=<%=resort.city%>&country=<%=resort.country%>&resort_type=<%=resort.resort_type%>&summary=<%=resort.summary%>&cost=<%=resort.cost%>&current_rate_usd=<%=resort.current_rate_usd%>&amenities=<%=resort.amenities%>&is_featured=<%=resort.is_featured%>">Edit</a> 
+                        <a class= "delete-btn" href="/admin/<%=resort._id%>/delete?_id=<%=resort._id%>">Delete</a>
+                    </td>
+                </tr>
+            <% }); %>
+
+            <% } %>
+
+
+        </table>
+    </div>
+    
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+    </footer>
+
+    <script src="js/adminFrontEnd.js"></script>
+
+</body>
+</html>

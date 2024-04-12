@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="stylesheet" href="/user.css" />  
+    <title>User Console</title>
+</head>
+<body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru User Console</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/userlogin/logout">Logout</a>
+    </nav>
+    </nav>
+
+    <div id="user-banner">
+        <div id="user-banner-overlay"></div>
+        <img src="/images/userBanner.jpg" alt="Green banner" /> 
+        <h1>Where To?</h1>
+    </div>
+
+    <div id="user-h3">
+
+    <h3>Favourite <span class="h3-span">location</span>? Favourite <span class="h3-span">activity</span>? Looking for <span class="h3-span">adventure</span>? Want to <span class="h3-span">relax</span>?</h3>
+    <h3>Let us help you book your dream vacation: </h3>
+
+    </div>
+
+    <div id="adminConsole">
+
+        <form id="search-by-keyword-form-user">
+            <label>Search by <span class="form_span">Keyword:</span> </label>
+            <input type="text" id="search-by-keyword-input-user" />
+            <button type="button" onclick="searchByKeywordUser()">Search</button>
+        </form>
+
+     
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+    </footer>
+
+
+    <script src="js/userFrontEnd.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- views/user-login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="stylesheet" href="/user.css" /> 
+</head>
+<body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru</h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </nav>
+
+    <div id="user-login-page">
+
+    <h1><span id="green-span"><%= heading %> </span></h1>
+
+
+    
+    <% if (message.length > 0) { %>
+        <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <div id="user-login-image-form">
+
+        <div id="user-form-display">
+        <h2>Account Login: </h2>
+    <form action="/userlogin" method="post">
+        <div class="user-login-form">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div class="user-login-form">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+
+        <% if (customer === true) { %>
+        <p>Don't have an account? <a href="/register">Register Today!</a></p>
+        <% } else { %>
+        <p>Trouble logging in? </p>
+        <p>Contact <span class="bold-text">helpdesk@travelguru.com </span></p>
+            <% }; %>
+     
+    </form>
+
+</div>
+
+    <img src="/images/userLoginImg.jpg" alt="Asian Resort" />
+
+</div>
+
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

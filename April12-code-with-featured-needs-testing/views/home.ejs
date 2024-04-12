@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guru - Your Adventure Awaits</title>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        body {
+            font-family: 'Avenir', 'Arial', sans-serif;
+            background-color: rgba(242, 227, 213, .5); /* cream background */
+            color: #027373; /* dark teal text for readability */
+            margin: 0;
+            padding: 0;
+            margin-bottom: 60px; /* Height of the footer */
+        }
+        header {
+            background-color: #04ADBF; /* teal background */
+            color: #fff; /* white text */
+            padding: 20px;
+            text-align: center;
+        }
+        nav { 
+            margin-top: 10px; 
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+
+        }
+        nav a:hover {
+            color: rgb(217, 217, 217); /* green color for hover state */
+        }
+        h1 {
+            font-family: 'Arial', sans-serif;
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        main {
+            padding: 30px 20px 20px 20px;
+        }
+        section {
+            margin-top: 30px;
+        }
+        article {
+            background-color: #fff; /* white background */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .home-img{
+            display: flex; 
+            justify-content: space-around;
+        }
+
+        h3 {
+            color: #04ADBF; /* teal color for headings */
+        }
+        footer {
+            background-color: #04ADBF; /* teal background */
+            color: #fff; /* white text */
+            text-align: center;
+            padding: 10px;
+            padding-top: 20px; 
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px; /* Height of the footer */
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/featured">Featured Resorts</li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/userlogin">User Login</a></li>
+            </ul>
+        </nav>
+        <h1>Welcome to Travel Guru</h1>
+        <p>Discover your perfect getaway!</p>
+    </header>
+    <main>
+        <section>
+            <h2>Featured Resorts</h2>
+            <!-- Sample display of featured resorts -->
+            <!-- You would populate this section dynamically with data from your resorts -->
+            <article>
+                <h3>Mountain Paradise</h3>
+                <div class="home-img">
+                <img src="/images/HomeImage2.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <img src="/images/HomeImage4.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+            </div>
+                <p>Enjoy a serene stay at our luxury mountain resorts with breathtaking views.</p>
+    
+            </article>
+            <article>
+                <h3>Beachfront Bliss</h3>
+                <div class="home-img">
+                <img src="/images/HomeImage1.jpg" alt="Beach Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+                <img src="/images/HomeImage5.jpg" alt="Mountain Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+            </div>
+                <p>Soak up the sun and relax on the pristine beaches at our tropical retreats.</p>
+                
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+        <nav>
+        <li><a href="/adminlogin">Admin Login</a></li>
+    </nav>
+    </footer>
+    <script src="/js/main.js"></script> <!-- Link to your JavaScript file, if you have one -->
+</body>
+</html>

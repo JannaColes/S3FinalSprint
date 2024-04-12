@@ -1,0 +1,191 @@
+*{
+    margin: 0; 
+    box-sizing: border-box;
+    font-family: "Avenir";
+}
+
+#admin-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 40px; 
+    background-color: #027373; 
+    color: white; 
+
+}
+
+#admin-nav a{
+    color: white; 
+    padding: 20px 30px; 
+    text-decoration: none;
+}
+
+#admin-nav a:hover{
+    color: rgb(217, 217, 217); 
+    padding: 20px 30px; 
+    text-decoration: none;
+}
+
+.adminConsole-h2{
+    font-size: 2rem;
+    margin: 40px 20px; 
+    border-bottom: 2px solid #027373;  
+}
+
+
+
+#delete-span{
+    color: rgb(131, 5, 5); 
+}
+
+.adminConsole-span{
+    color: #027373; 
+}
+
+
+
+#Add{
+    background-color: rgba(242, 227, 213, .25);
+    padding: 20px 0px; 
+}
+
+#addResort-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    margin-left: 20px; 
+}
+
+#addResort-form input, textarea, select{
+    padding: 10px 0px; 
+    margin-top: 5px; 
+    margin-bottom: 20px; 
+}
+
+#addResort-form button{
+    background-color: #027373;
+    color: white; 
+    border: none; 
+    border-radius: 10px;
+    font-size: 1.25rem; 
+    padding: 10px 10px; 
+}
+
+
+#resort-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px; 
+
+}
+
+#resort-section th, td{
+    padding: 5px; 
+    align-self: center;
+}
+
+#resort-section th{
+    font-weight: 400; 
+}
+
+#resort-section th{
+    background-color: #027373;
+    color: white; 
+}
+
+#resort-section tr:nth-child(even) {
+background-color: rgba(242, 227, 213, .25);
+}
+
+.resort-Id{
+    max-width: 100px;
+    word-wrap: break-word;
+}
+
+.resort-summary{
+    max-width: 600px;
+    text-align: left;
+}
+
+.edit-btn{
+
+    background-color: #027373;
+    color: white; 
+    border-radius: 10px;
+    padding: 5px 10px; 
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10%; 
+
+
+}
+
+.delete-btn {
+    background-color: rgb(131, 5, 5);
+    color: white; 
+    border-radius: 10px;
+    padding: 5px 10px; 
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+
+}
+
+.resort-AdminBtn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#edit-delete-forms{
+    font-size: 1.15rem; 
+    padding-bottom: 40px;
+    border-bottom: #027373 solid 2px;
+    margin-left: 20px; 
+    margin-right: 20px; 
+}
+
+#edit-delete-forms form{
+    margin-top: 20px; 
+}
+
+
+#Edit-Delete-Section button{
+    background-color: #027373;
+    color: white; 
+    font-weight: 400;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+#Edit-Delete-Section h4{
+    margin-left: 20px; 
+}
+
+.form_span{
+    color: #027373; 
+    font-weight: 500;
+}
+
+footer {
+    background-color: #027373;
+    color: white; 
+    height: 75px; 
+    margin-top: 40px; 
+    padding-top: 20px; 
+    padding-left: 20px;
+
+  }
+
+  .bold-text{
+    font-weight: 700;
+  }
+  
+
