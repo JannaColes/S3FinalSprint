@@ -34,10 +34,18 @@ myEmitter.on('errorUserLogins', (url) => {
 ); 
 
 
+// Uses same function as error emitters. 
+// Although it uses the same parameter name of 'url' this is actually the User ID being passed through (in the error emitters above it is the URL)
+myEmitter.on('userKeywordSearch', (keyword, url) => {
+    setUpDirectories('userKeywordSearch', url, keyword); 
+    }
+); 
+
+
 
 // An async function that sets up an organized directory (if it does not already exist) to log the 'error' and 'routes' events triggered. 
 
-async function setUpDirectories(directoryType, url) {
+async function setUpDirectories(directoryType, url, keyword = '') {
 
     // Dates needed for logging: 
     const onDate = new Date(); 
@@ -46,7 +54,13 @@ async function setUpDirectories(directoryType, url) {
     const dateTime = `${format(new Date(), 'yyyyMMdd\tHH:mm:ss')}`;
 
     const currFolder = path.join(__dirname, 'logs', onYear, directoryType); 
-    const logItem = `${dateTime}\t${directoryType}\t${url}\t${uuid()}`;
+
+    let logItem = "";  
+    if(directoryType === "userKeywordSearch") {
+        logItem = `${dateTime}\t${directoryType}\t${keyword}\t${url}\t${uuid()}`; 
+    } else {
+        logItem = `${dateTime}\t${directoryType}\t${url}\t${uuid()}`; 
+    }
 
 try {
     // Create the 'logs' folder - if it does not already exist 

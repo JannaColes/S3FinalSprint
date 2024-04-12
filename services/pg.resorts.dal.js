@@ -1,5 +1,7 @@
 const dal = require('./pg_auth_db');
 
+const { myEmitter } = require('../logEvents');
+
 // Get all resorts: 
 var getResorts = async function() {
     if(DEBUG) console.log("resorts.pg.dal.getResorts()");
@@ -46,7 +48,7 @@ async function getResortsById(id) {
   `;
 
     try {
-     
+
         let results = await dal.query(sql, [keyword]); 
         return results.rows; 
         
