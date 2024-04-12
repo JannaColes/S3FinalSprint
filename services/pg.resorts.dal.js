@@ -81,13 +81,25 @@ async function getResortsById(id) {
   };
 
 
-  async function deleteResort() {
+  async function deleteResort(id) {
     if(DEBUG) console.log("Auth.postgres.dal.deleteResort()");
+
+
+    const sql = `DELETE FROM public.resorts WHERE _id=$1;`;
+
+    try {
+
+      let result = await dal.query(sql, [id]); 
+      return result; 
+      
+    } catch (error) {
+      console.log(error); 
+    }
 
 
   }; 
 
-
+  // For amenities (array) - values must be entered as an array (they are entered by the user as a string)
   function formatHobbyArray(hobbies){
     let divideHobbies = hobbies.split(","); 
     if(DEBUG) console.log(divideHobbies); 
