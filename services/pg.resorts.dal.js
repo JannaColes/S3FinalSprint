@@ -57,6 +57,43 @@ async function getResortsById(id) {
     }
     
   };
+
+
+  async function putResort(id, rName, ci, co, rType, s, rCost, rate, amen, isFeat) {
+    if(DEBUG) console.log("Auth.postgres.dal.putResort()");
+
+    const sql = `UPDATE public.resorts \
+    SET resort_name=$1, city=$2, country=$3, resort_type=$4, summary=$5, cost=$6, current_rate_usd=$7, amenities=$8, is_featured=$9 \
+    WHERE _id = $10`; 
+
+    try {
+
+      let addAmenities = formatHobbyArray(amen); 
+
+      let result = await dal.query(sql, [rName, ci, co, rType, s, rCost, rate, addAmenities, isFeat, id]); 
+      return result; 
+      
+    } catch (error) {
+      console.log(error); 
+    }
+
+
+  };
+
+
+  async function deleteResort() {
+    if(DEBUG) console.log("Auth.postgres.dal.deleteResort()");
+
+
+  }; 
+
+
+  function formatHobbyArray(hobbies){
+    let divideHobbies = hobbies.split(","); 
+    if(DEBUG) console.log(divideHobbies); 
+  
+    return divideHobbies; 
+  }
   
 
 
@@ -64,4 +101,6 @@ async function getResortsById(id) {
     getResorts, 
     getResortsByKeyword, 
     getResortsById, 
+    putResort, 
+    deleteResort, 
   }
