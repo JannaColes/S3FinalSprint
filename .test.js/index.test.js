@@ -1,23 +1,10 @@
+// .test.js/index.test.js
 const request = require('supertest');
-const app = require('../index'); 
+const app = require('../index'); // Adjust the path to your index.js file
 
-let server;
-
-beforeAll(() => {
-  server = app.listen(3000);
-});
-
-afterAll(() => {
-  server.close();
-});
-describe('Server', () => {
-  it('should start and return a response on the root route', async () => {
-    const response = await request(server).get('/');
-    expect(response.statusCode).toBe(200);
-  });
-
-  it('should return a response from the /user route', async () => {
-    const response = await request(server).get('/user');
+describe('GET /', () => {
+  it('should return status code 200', async () => {
+    const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
   });
 });

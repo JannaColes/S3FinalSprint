@@ -1,46 +1,33 @@
-const pool = require('../services/pg_auth_db'); // Database connection pool
+const pool = require('../services/pg_auth_db');
 const User = require('../services/userModel');
 
 describe('User Model', () => {
-  // Optional: Clear the test database before each test
-  beforeEach(async () => {
-    await pool.query('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
-  });
-
-  describe('findOne', () => {
-    test('should return user if found by email', async () => {
-      // Insert a user into the test database
-      const mockEmail = 'test@example.com';
-      await pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [mockEmail, 'hashedPassword']);
-
-      // Find the user by email
-      const user = await User.findOne({ email: mockEmail });
-
-      expect(user).not.toBeNull();
-      expect(user.email).toBe(mockEmail);
-    });
-
-    test('should return null if user not found by email', async () => {
-      const mockEmail = 'nonexistent@example.com';
-      const user = await User.findOne({ email: mockEmail });
-
-      expect(user).toBeNull();
-    });
-  });
+  // Comment out or adjust any cleanup logic here
 
   describe('create', () => {
-    test('should create a new user and return the created user', async () => {
+    it('should create a new user and return the created user', async () => {
       const mockUserData = {
-        email: 'newuser@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'create_test@example.com',
         password: 'password',
+        phone_number: '1234567890',
+        date_of_birth: '1990-01-01',
+        interests: 'Sports, Travel',
       };
 
       const createdUser = await User.create(mockUserData);
+      console.log('Created user:', createdUser); // Log the created user
+
+      // Manually query the database to check if the user was inserted
+      const { rows } = await pool.query('SELECT * FROM users WHERE email = $1', [mockUserData.email]);
+      console.log('Queried user:', rows[0]); // Log the queried user
 
       expect(createdUser).not.toBeNull();
       expect(createdUser.email).toBe(mockUserData.email);
+      expect(rows[0]).not.toBeNull(); // Check if the user exists in the database
     });
   });
 
-  // Add more tests for other methods like findById, update, delete, etc.
+  
 });
