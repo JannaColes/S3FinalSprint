@@ -60,5 +60,28 @@ router.post("/", (req, res, next) => {
   })(req, res, next);
 });
 
+
+// Logout user
+router.get("/logout", (req, res, next) => {
+  console.log("Logout route hit.");
+  req.logout(function (err) {
+    if (err) {
+      console.error("Logout error:", err);
+      return next(err);
+    }
+    // Session destruction should occur within the logout callback to ensure sequence
+    req.session.destroy(function (err) {
+      if (err) {
+        console.log("Session destroy error:", err);
+        return next(err);
+      } else {
+        console.log("Session destroyed");
+        res.clearCookie("connect.sid", { path: "/" });
+        res.redirect("/userlogin");
+      }
+    });
+  });
+});
+
 module.exports = router;
 // Path: services/authService.js

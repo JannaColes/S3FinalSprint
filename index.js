@@ -114,12 +114,18 @@ function checkAuthenticated(req, res, next) {
   }
   res.redirect('/userlogin');
 }
+
 function checkNotAuthenticated(req, res, next) {
-  if ( req.isAuthenticated()) {
-    if(DEBUG) console.log("checkNOTAuth"); 
-      return res.redirect('/user');
+  if (req.isAuthenticated() && req.path !== "/logout") {
+    console.log(
+      "checkNotAuthenticated: user is authenticated, redirecting to /user"
+    );
+    return res.redirect("/user"); // If the user is logged in and not trying to logout, redirect them.
   }
-  return next();
+  console.log(
+    "checkNotAuthenticated: user is not authenticated, continuing to next middleware"
+  );
+  return next(); // If the user is not logged in or is trying to logout, continue to the next middleware/route handler.
 }
 
 function checkUser(req, res, next) {
