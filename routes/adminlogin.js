@@ -7,7 +7,7 @@ const authService = require("../services/authService"); // You would create this
 router.get("/", (req, res) => {
   try {
     console.log("Rendering admin login form.");
-    res.render("user-login", { message: req.flash("error") });
+    res.render("user-login", { message: req.flash("error"), heading: "Admin Login", customer: false});
   } catch (error) {
     console.log(error); 
   }

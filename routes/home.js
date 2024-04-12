@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const { myEmitter } = require('../logEvents'); 
+
 // You could require your DAL if you need to fetch dynamic content for the homepage
 const resortsDal = require('../services/m.resorts.dal'); 
 const resortsDalPG = require('../services/pg.resorts.dal'); 
@@ -19,9 +21,9 @@ router.get("/", async (req, res) => {
       // featuredResorts: featuredResorts
     });
   } catch (err) {
-    // Log the error and render an error page or send a response
-    console.error(err);
-    res.status(500).send("Server Error");
+    let errorMsg = `Error 503: ${req.originalUrl} server GET request failed: ${err}`; 
+        if (DEBUG) console.log(errorMsg); 
+    myEmitter.emit('error503', errorMsg); 
   }
 });
 

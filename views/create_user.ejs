@@ -2,21 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
+    <link rel="stylesheet" href="/admin.css" />
     <style>
-        body {
-            background-color: #F2E3D5; /* cream background */
+    
+        .container {
+            background-color: rgba(242, 227, 213, .25); /* cream background */
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
+            padding-top: 40px; 
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
         }
-        .container {
-            display: flex;
-            align-items: flex-start;
-            margin-right: 200px;
-        }
-        h1 {
+        #h1-register{
             color: #04ADBF;
             margin-bottom: 50px;
             margin-right:200px;
@@ -63,16 +61,24 @@
             height: 380px;
             border: #7EA629 2px solid;
         }
-        /* Error styles */
-        /* ... Your existing styles for errors ... */
+    
     </style>
 </head>
 <body>
+
+    <nav id="admin-nav">
+        <h1>Travel Guru Registration</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/userlogin">User Login</a>
+    </nav>
+    </nav>
+
     <div class="container">
         <div>
-            <h1>Become a Guru Voyager</h1>
+            <h1 id="h1-register">Become a Guru Voyager</h1>
             <h2>Register now and find the Guru in You!</h2>
-            <img src="beach.jpeg" alt="Travel Guru Logo"/>
+            <img src="/images/HomeImage3.jpg" alt="Travel Guru Logo"/>
         </div>
         <div class="form-container">
     <% if (errors && errors.length > 0) { %>
@@ -106,5 +112,16 @@
         
         <input type="submit" value="Create User">
     </form>
+
+</div>
+
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+</footer>
+
+    
 </body>
 </html>

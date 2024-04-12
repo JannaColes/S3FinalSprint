@@ -11,8 +11,8 @@
             min-height: 100%;
         }
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #F2E3D5; /* cream background */
+            font-family: 'Avenir', 'Arial', sans-serif;
+            background-color: rgba(242, 227, 213, .5); /* cream background */
             color: #027373; /* dark teal text for readability */
             margin: 0;
             padding: 0;
@@ -23,6 +23,9 @@
             color: #fff; /* white text */
             padding: 20px;
             text-align: center;
+        }
+        nav { 
+            margin-top: 10px; 
         }
         nav ul {
             list-style: none;
@@ -38,12 +41,14 @@
             text-decoration: none;
             color: #fff;
             font-weight: bold;
+
         }
         nav a:hover {
-            color: #04BF8F; /* green color for hover state */
+            color: rgb(217, 217, 217); /* green color for hover state */
         }
         h1 {
-            margin: 0;
+            font-family: 'Arial', sans-serif;
+            margin-top: 20px;
             font-size: 2.5rem;
         }
         p {
@@ -62,6 +67,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+
+        .home-img{
+            display: flex; 
+            justify-content: space-around;
+        }
+
         h3 {
             color: #04ADBF; /* teal color for headings */
         }
@@ -70,6 +81,7 @@
             color: #fff; /* white text */
             text-align: center;
             padding: 10px;
+            padding-top: 20px; 
             position: absolute;
             bottom: 0;
             width: 100%;
@@ -85,11 +97,8 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/resorts">Resorts</a></li>
-                <li><a href="/search">Search</a></li>
                 <li><a href="/register">Register</a></li>
                 <li><a href="/userlogin">User Login</a></li>
-                <li><a href="/adminlogin">Admin Login</a></li>
             </ul>
         </nav>
         <h1>Welcome to Travel Guru</h1>
@@ -102,18 +111,29 @@
             <!-- You would populate this section dynamically with data from your resorts -->
             <article>
                 <h3>Mountain Paradise</h3>
-                <img src="montain.jpeg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <div class="home-img">
+                <img src="/images/HomeImage2.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <img src="/images/HomeImage4.jpg" alt="Mountain Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+            </div>
                 <p>Enjoy a serene stay at our luxury mountain resorts with breathtaking views.</p>
+    
             </article>
             <article>
                 <h3>Beachfront Bliss</h3>
-                <img src="beach.jpeg" alt="Beach Resort" style="width: 100%; max-width: 600px; height: auto;"/>
+                <div class="home-img">
+                <img src="/images/HomeImage1.jpg" alt="Beach Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+                <img src="/images/HomeImage5.jpg" alt="Mountain Resort" style="width: 100%; max-width: 550px; height: 600px; object-fit: cover;"/>
+            </div>
                 <p>Soak up the sun and relax on the pristine beaches at our tropical retreats.</p>
+                
             </article>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Travel Guru. All rights reserved.</p>
+        <nav>
+        <li><a href="/adminlogin">Admin Login</a></li>
+    </nav>
     </footer>
     <script src="/js/main.js"></script> <!-- Link to your JavaScript file, if you have one -->
 </body>

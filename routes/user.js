@@ -39,6 +39,13 @@ router.get('/', async (req, res) => {
    resorts = await resortsDal.getResortsByKeyword(keyword); 
    resortsPostgres = await resortsDalPG.getResortsByKeyword(keyword); 
 
+   if (req.user && req.user.user_id) {
+    const userId = `User ID: ${req.user.user_id}`;
+    myEmitter.emit('userKeywordSearch', keyword, userId);
+} else {
+    console.log('User ID not found in request');
+}
+
    if(DEBUG) console.log(resorts, resortsPostgres); 
     res.render('user_search_dashboard', { theResorts: resorts, theResortsPG: resortsPostgres  });
 
