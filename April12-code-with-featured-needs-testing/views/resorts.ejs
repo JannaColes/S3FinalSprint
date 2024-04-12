@@ -1,0 +1,17 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="resorts content">
+
+                <b>Resorts: </b></br> 
+            <% if (theResorts.length > 0) { %>
+                <% theResorts.forEach(resort => { %>
+                    <b><%= resort.resort_type %></b>
+                    <% }) %>
+            <% } %>
+            
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
