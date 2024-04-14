@@ -6,7 +6,7 @@ describe('Resort DAL', () => {
   let newResortId;
 
   afterAll(async () => {
-    // Attempt to clean up the test database
+    
     if (newResortId) {
       try {
         await deleteResort(newResortId);
@@ -50,5 +50,5 @@ describe('Resort DAL', () => {
     expect(foundResort).toBeDefined();
     expect(foundResort.city).toBe("Test City");
     
-  }, 10000); // Increase the timeout for this test to 10 seconds
+  }, 10000); 
 });

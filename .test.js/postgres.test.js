@@ -9,7 +9,7 @@ beforeAll(() => {
     host: 'localhost',
     database: 'travel',
     password: 'Charlie1986!',
-    port: 5432, // Adjust the port if necessary
+    port: 5432, 
   });
 });
 
@@ -27,7 +27,7 @@ describe('PostgreSQL Connection', () => {
   test('Fail authentication with incorrect password', async () => {
     await passport.authenticate('local', async (err, user, info) => {
       expect(err).toBeNull();
-      expect(user).toBe(false); // Update expectation to check for false
+      expect(user).toBe(false); 
       expect(info.message).toBe('Incorrect password.');
     })({ body: { email: 'test@example.com', password: 'invalidpassword' } }, {}, jest.fn());
   });

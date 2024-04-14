@@ -21,7 +21,7 @@ describe('Database Connections', () => {
 
   it('should connect to MongoDB', async () => {
     await mongoose.connect('mongodb+srv://amydalziel:mdb2021lat@clustersemester3.ks4jtmh.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
-    expect(mongoose.connection.readyState).toBe(1); // 1 means connected
+    expect(mongoose.connection.readyState).toBe(1); 
   });
 
   it('should connect to PostgreSQL', async () => {

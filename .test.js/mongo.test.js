@@ -23,7 +23,7 @@ describe('MongoDB Connection', () => {
 
   test('should connect to the MongoDB in-memory server', async () => {
     expect(client).toBeDefined();
-    // Assuming isConnected() doesn't exist, we check if the client object exists to consider it connected
+    
     expect(client).toBeTruthy();
   });
 
