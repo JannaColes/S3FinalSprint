@@ -13,8 +13,6 @@
         <nav>
         <a href="/">Home</a>
         <a href="/admin">Admin Home</a>
-        <a href="/admin">Add</a>
-        <a href="/admin">Edit/Delete</a>
         <a href="/userlogin/logout">Logout</a>
     </nav>
     </nav>
@@ -90,7 +88,7 @@
                     <td class="resort-summary"><%= resort.summary %></td>
                     <td><%= resort.cost %></td>
                     <td>$<%= resort.current_rate_usd %> USD</td>
-                    
+            
                     <% if(resort.is_featured) { %>
                     <td>Featured</td>
                     <% } else { %>
