@@ -1,3 +1,5 @@
+// Description: Testing the index route.
+
 const request = require('supertest');
 const app = require('../index'); 
 describe('GET /', () => {

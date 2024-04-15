@@ -1,3 +1,5 @@
+// Test: Check if the database connections are working
+
 const mongoose = require('mongoose');
 const { Pool } = require('pg');
 

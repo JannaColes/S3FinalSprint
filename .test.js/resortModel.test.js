@@ -1,3 +1,5 @@
+// This test file is for testing the resort DAL (Data Access Layer) functions.
+
 global.DEBUG = true;
 require('dotenv').config();
 const { addResort, getResorts, deleteResort } = require('../services/m.resorts.dal'); // Adjust the path to your resort DAL

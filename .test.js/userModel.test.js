@@ -1,3 +1,5 @@
+// Description: This file contains the test cases for the user model.
+
 const pool = require('../services/pg_auth_db');
 const User = require('../services/userModel');
 

@@ -1,3 +1,5 @@
+// Description: Test PostgreSQL connection and authentication.
+
 const { Pool } = require('pg');
 const passport = require('passport');
 
